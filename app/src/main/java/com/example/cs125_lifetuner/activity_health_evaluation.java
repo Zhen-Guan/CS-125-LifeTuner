@@ -5,15 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.LinearLayout;
+import android.view.View;
 
-public class Result_Evening extends AppCompatActivity {
+public class activity_health_evaluation extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result__evening);
+        setContentView(R.layout.activity_health_evaluation);
 
         //背景代码 每次建立新的activity都可以把这一段复制到onCreate方法中
         LinearLayout background_Layout = (LinearLayout) findViewById(R.id.main_container);
@@ -24,8 +24,8 @@ public class Result_Evening extends AppCompatActivity {
         //
     }
 
-    public void openMainPage(View v){
-        Intent intent = new Intent(this, activity_health_evaluation.class);
+    public void openMorningPage(View v){
+        Intent intent = new Intent(this, Result_Morning.class);
         startActivity(intent);
     }
 }
