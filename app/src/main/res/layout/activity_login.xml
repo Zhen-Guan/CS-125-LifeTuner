@@ -17,16 +17,16 @@
     <!--        android:orientation="vertical">-->
     <!--    </LinearLayout>-->
 
+
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="408dp"
-        android:layout_height="802dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/login_picture1" />
-
 
     <TextView
         android:id="@+id/Login_title"
@@ -107,7 +107,7 @@
         android:layout_height="46dp"
         android:layout_marginEnd="156dp"
         android:layout_marginRight="156dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="#ffff99"
         android:text="Sign up"
         android:textColor="@color/black"
