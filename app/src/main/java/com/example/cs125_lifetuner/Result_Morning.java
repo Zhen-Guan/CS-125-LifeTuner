@@ -39,4 +39,5 @@ public class Result_Morning extends AppCompatActivity {
         Intent intent = new Intent(this, Result_Afternoon.class);
         startActivity(intent);
     }
+
 }

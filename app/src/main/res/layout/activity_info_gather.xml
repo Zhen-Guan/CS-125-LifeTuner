@@ -1,62 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:orientation="vertical">
-    android:background="@drawable/background"
+    tools:context=".activity_health_evaluation">
 
+    <!--        //在UI的xml中同样需要加上这一行作为一个整体的渐变Layout-->
+    <LinearLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:orientation="vertical" >
+    </LinearLayout>
+    <!--    //-->
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="63dp"
+        android:id="@+id/textView"
+        android:layout_width="353dp"
+        android:layout_height="62dp"
         android:layout_gravity="center"
+        android:layout_marginTop="44dp"
         android:gravity="center"
-        android:text="    Information Gathering"
-        android:textSize="30sp" />
+        android:text="Information Gathering"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.074" />
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="422dp"
-        android:layout_height="64dp"
+        android:layout_width="384dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="200dp"
         android:ems="10"
         android:hint="Enter your height here"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editText9"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_width="384dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:ems="10"
         android:hint="Enter you weight here"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editText10"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_width="384dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:ems="10"
         android:hint="Enter your age here"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/editText9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_width="384dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="408dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="Male/Female"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.993" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_width="337dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="28dp"
         android:background="#ffff99"
         android:gravity="center"
         android:text="ENTER"
         android:textColor="#000000"
         android:textColorHint="#ffff99"
-        android:textColorLink="#ffff99" />
+        android:textColorLink="#ffff99"
+        app:backgroundTint="#ffff99"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,13 +9,13 @@
     tools:context=".Result_Morning">
 
     <!--        //在UI的xml中同样需要加上这一行作为一个整体的渐变Layout-->
-    <!--    <LinearLayout-->
-    <!--        android:id="@+id/main_container"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:background="@drawable/background"-->
-    <!--        android:orientation="vertical">-->
-    <!--    </LinearLayout>-->
+    <LinearLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:orientation="vertical">
+    </LinearLayout>
 
 
     <ImageView
@@ -62,8 +62,8 @@
 
     <Button
         android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="96dp"
+        android:layout_height="45dp"
         android:layout_marginBottom="8dp"
         android:backgroundTint="#ffff99"
         android:text="Log In"
