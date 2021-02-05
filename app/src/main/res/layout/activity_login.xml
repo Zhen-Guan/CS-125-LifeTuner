@@ -35,7 +35,7 @@
         android:layout_marginStart="144dp"
         android:layout_marginLeft="144dp"
         android:layout_marginTop="44dp"
-        android:text="LifeTurner"
+        android:text="LifeTuner"
         android:textColor="#03A9F4"
         android:textSize="25dp"
         android:textStyle="bold"
@@ -65,10 +65,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:background="#2196F3"
         android:backgroundTint="#ffff99"
         android:text="Log In"
         android:textColor="@color/black"
+        app:backgroundTint="#8BC34A"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintStart_toStartOf="@+id/button3" />
 
@@ -108,7 +108,9 @@
         android:layout_marginEnd="156dp"
         android:layout_marginRight="156dp"
         android:layout_marginBottom="48dp"
+        android:backgroundTint="#ffff99"
         android:text="Sign up"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
         app:layout_constraintEnd_toEndOf="parent" />
 
