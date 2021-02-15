@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/profile"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="Edit Profile">
+    </item>
+    <item
+        android:id="@+id/BMR"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="BMR Result">
+    </item>
+    <item
+        android:id="@+id/morning"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="Morning Recommendation">
+    </item>
+    <item
+        android:id="@+id/afternoon"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="Afternoon Recommendation">
+    </item>
+    <item
+        android:id="@+id/evening"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="Evening Recommendation">
+    </item>
+
+
+</menu>

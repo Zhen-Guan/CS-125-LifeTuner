@@ -4,13 +4,47 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.view.View;
+import android.widget.Toast;
 
 public class info_gather extends AppCompatActivity {
 
+
     @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.navigation, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.BMR:
+                openEvaluationPage();
+                break;
+            case R.id.morning:
+                openMorningPage();
+                break;
+            case R.id.evening:
+                openEveningPage();
+                break;
+            case R.id.afternoon:
+                openAfternoonPage();
+                break;
+            case R.id.profile:
+                openProfile();
+                break;
+        }
+        return true;
+    }
+
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_gather);
@@ -34,6 +68,26 @@ public class info_gather extends AppCompatActivity {
 
     public void openEvaluationPage(){
         Intent intent = new Intent(this, activity_health_evaluation.class);
+        startActivity(intent);
+    }
+
+    public void openMorningPage(){
+        Intent intent = new Intent(this, Result_Morning.class);
+        startActivity(intent);
+    }
+
+    public void openAfternoonPage(){
+        Intent intent = new Intent(this, Result_Afternoon.class);
+        startActivity(intent);
+    }
+
+    public void openEveningPage(){
+        Intent intent = new Intent(this, Result_Evening.class);
+        startActivity(intent);
+    }
+
+    public void openProfile(){
+        Intent intent = new Intent(this, info_gather.class);
         startActivity(intent);
     }
 }
