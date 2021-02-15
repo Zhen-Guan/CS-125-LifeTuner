@@ -15,7 +15,7 @@ public class Result_Afternoon extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result__afternoon);
-        button = (Button) findViewById(R.id.button_to_dinner);
+        button = (Button) findViewById(R.id.button_to_evening);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

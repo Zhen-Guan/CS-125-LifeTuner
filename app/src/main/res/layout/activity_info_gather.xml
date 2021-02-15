@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/background"
         android:orientation="vertical" >
+
     </LinearLayout>
     <!--    //-->
 
@@ -26,94 +27,93 @@
         android:text="Information Gathering"
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/height"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.074" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/height"
         android:layout_width="384dp"
-        android:layout_height="45dp"
+        android:layout_height="60dp"
         android:layout_marginStart="11dp"
         android:layout_marginLeft="11dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="200dp"
         android:ems="10"
-        android:hint="Enter your height here"
-        android:inputType="textPersonName"
+        android:hint="Enter your height here (in cm)"
+        android:inputType="number|numberDecimal"
         android:textColorHint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/enter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText9"
+        android:id="@+id/weight"
         android:layout_width="384dp"
-        android:layout_height="45dp"
+        android:layout_height="60dp"
         android:layout_marginStart="11dp"
         android:layout_marginLeft="11dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
-        android:hint="Enter you weight here"
-        android:inputType="textPersonName"
+        android:hint="Enter you weight here (in pounds)"
+        android:inputType="number|numberDecimal"
         android:textColorHint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/height"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
+
+    <RadioGroup
+        android:id="@+id/gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/age"
+        app:layout_constraintLeft_toLeftOf="@+id/age">
+
+        <RadioButton
+            android:id="@+id/radioMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="male"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radioFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="female" />
+
+    </RadioGroup>
+
     <EditText
-        android:id="@+id/editText10"
+        android:id="@+id/age"
         android:layout_width="384dp"
-        android:layout_height="45dp"
+        android:layout_height="60dp"
         android:layout_marginStart="11dp"
         android:layout_marginLeft="11dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
         android:hint="Enter your age here"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:textColorHint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/editText9"
+        app:layout_constraintBottom_toTopOf="@+id/weight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="384dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="408dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="Male/Female"
-        android:inputType="textPersonName"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.993" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="337dp"
-        android:layout_height="46dp"
+        android:id="@+id/enter"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="28dp"
         android:background="#ffff99"
         android:gravity="center"

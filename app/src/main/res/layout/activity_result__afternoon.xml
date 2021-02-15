@@ -193,7 +193,7 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/button_to_dinner"
+        android:id="@+id/button_to_evening"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"

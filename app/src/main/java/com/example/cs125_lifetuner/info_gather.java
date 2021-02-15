@@ -15,7 +15,7 @@ public class info_gather extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_gather);
 
-        Button button = (Button) findViewById(R.id.button2);
+        Button button = (Button) findViewById(R.id.enter);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
