@@ -33,7 +33,7 @@ public class SignUp extends AppCompatActivity {
         animationDrawable.start();
         //
     }
-    
+
     public void openProfile(){
         Intent intent = new Intent(this, info_gather.class);
         startActivity(intent);
