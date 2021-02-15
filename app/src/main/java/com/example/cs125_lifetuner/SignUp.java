@@ -5,30 +5,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.view.View;
+import android.widget.Button;
 
-public class Login extends AppCompatActivity {
+public class SignUp extends AppCompatActivity {
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-        Button button = (Button) findViewById(R.id.login_button);
+        setContentView(R.layout.activity_sign_up);
+        button = (Button) findViewById(R.id.register);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openInfoPage();
-            }
-        });
-
-        Button signup_button = (Button) findViewById(R.id.signup_button);
-        signup_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openSignupPage();
+                openProfile();
             }
         });
 
@@ -40,16 +33,10 @@ public class Login extends AppCompatActivity {
         animationDrawable.start();
         //
     }
-
-    public void openInfoPage(){
+    
+    public void openProfile(){
         Intent intent = new Intent(this, info_gather.class);
         startActivity(intent);
     }
-
-    public void openSignupPage(){
-        Intent intent = new Intent(this, SignUp.class);
-        startActivity(intent);
-    }
-
 
 }

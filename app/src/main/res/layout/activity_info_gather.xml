@@ -71,27 +71,6 @@
         app:layout_constraintVertical_bias="1.0" />
 
 
-    <RadioGroup
-        android:id="@+id/gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/age"
-        app:layout_constraintLeft_toLeftOf="@+id/age">
-
-        <RadioButton
-            android:id="@+id/radioMale"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="male"
-            android:checked="true" />
-
-        <RadioButton
-            android:id="@+id/radioFemale"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="female" />
-
-    </RadioGroup>
 
     <EditText
         android:id="@+id/age"

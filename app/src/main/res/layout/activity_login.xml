@@ -69,8 +69,8 @@
         android:text="Log In"
         android:textColor="@color/black"
         app:backgroundTint="#8BC34A"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintStart_toStartOf="@+id/button3" />
+        app:layout_constraintBottom_toTopOf="@+id/signup_button"
+        app:layout_constraintStart_toStartOf="@+id/signup_button" />
 
     <EditText
         android:id="@+id/editTextTextPassword"
@@ -102,7 +102,7 @@
         app:layout_constraintStart_toStartOf="@+id/editTextTextPassword" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/signup_button"
         android:layout_width="96dp"
         android:layout_height="46dp"
         android:layout_marginEnd="156dp"

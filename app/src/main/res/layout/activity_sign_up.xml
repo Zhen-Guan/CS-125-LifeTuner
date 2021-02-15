@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUp">
+
+    <LinearLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        android:id="@+id/SIGN_UP_TEXT"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="SIGN UP"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <RadioGroup
+        android:id="@+id/gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/SIGN_UP_TEXT"
+        app:layout_constraintLeft_toLeftOf="@+id/new_username"
+        android:layout_margin="20dp">
+
+        <RadioButton
+            android:id="@+id/radioMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="male"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radioFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="female" />
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/new_username"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:hint="Enter Username"
+        android:inputType="text"
+        android:textColorHint="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/gender"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/new_password"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:hint="Enter Password"
+        android:inputType="numberPassword"
+        android:textColorHint="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/new_username"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#ffff99"
+        android:text="REGISTER"
+        app:layout_constraintTop_toBottomOf="@+id/new_password"
+        android:textColor="@color/black"
+        app:layout_constraintLeft_toLeftOf="@id/SIGN_UP_TEXT"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
