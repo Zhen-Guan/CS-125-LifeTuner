@@ -7,11 +7,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.view.View;
 import android.widget.Toast;
 
-public class info_gather extends AppCompatActivity {
+public class info_gather extends AppCompatActivity implements View.OnClickListener {
 
 
     @Override
@@ -44,18 +45,16 @@ public class info_gather extends AppCompatActivity {
         return true;
     }
 
-        @Override
+    private EditText weight;
+    private EditText height;
+    private EditText age;
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_gather);
 
         Button button = (Button) findViewById(R.id.enter);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openEvaluationPage();
-            }
-        });
+        getId();
 
         //背景代码 每次建立新的activity都可以把这一段复制到onCreate方法中
         LinearLayout background_Layout = (LinearLayout) findViewById(R.id.main_container);
@@ -65,6 +64,36 @@ public class info_gather extends AppCompatActivity {
         animationDrawable.start();
         //
     }
+    private void getId(){
+        weight=findViewById(R.id.weight);
+        height = findViewById(R.id.height);
+        age = findViewById(R.id.age);
+        Button button_send = findViewById(R.id.enter);
+        button_send.setOnClickListener(this);
+    }
+
+    public void onClick(View v){
+        switch (v.getId()){
+            case R.id.enter:
+                Intent intent=new Intent(info_gather.this,activity_health_evaluation.class);
+                String weight_new=weight.getText().toString().trim();
+                int w = Integer.parseInt(weight_new);
+                String height_new=height.getText().toString().trim();
+                int h = Integer.parseInt(height_new);
+                String age_new=age.getText().toString().trim();
+                int a = Integer.parseInt(age_new);
+                final double d = (10 * w) + (6.25 * h) - 5 * a;
+                String bmr = String.valueOf(d);
+                String target = String.valueOf((h-80)*0.7);
+                String calories = String.valueOf((d) *1.2);
+                intent.putExtra("current_weight",weight_new+"");
+                intent.putExtra("data",bmr+"");
+                intent.putExtra("target_weight",target+"");
+                intent.putExtra("calories",calories+"");
+                startActivity(intent);
+        }
+    }
+
 
     public void openEvaluationPage(){
         Intent intent = new Intent(this, activity_health_evaluation.class);

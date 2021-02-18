@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.view.View;
+import android.widget.TextView;
 
 public class activity_health_evaluation extends AppCompatActivity {
 
@@ -45,6 +46,15 @@ public class activity_health_evaluation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_evaluation);
+        Intent intent=getIntent();
+        TextView dmr=findViewById(R.id.bmr_value);
+        dmr.setText(intent.getStringExtra("data"));
+        TextView cur_weight=findViewById(R.id.current_weight_value);
+        cur_weight.setText(intent.getStringExtra("current_weight"));
+        TextView tar_weight=findViewById(R.id.target_weight_value);
+        tar_weight.setText(intent.getStringExtra("target_weight"));
+        TextView cal=findViewById(R.id.bmr_value2);
+        cal.setText(intent.getStringExtra("calories"));
 
         //背景代码 每次建立新的activity都可以把这一段复制到onCreate方法中
         LinearLayout background_Layout = (LinearLayout) findViewById(R.id.main_container);
