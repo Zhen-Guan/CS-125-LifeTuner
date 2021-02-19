@@ -53,7 +53,7 @@ public class Result_Exercise extends AppCompatActivity {
         Intent intent = getIntent();
         result_calories = Integer.parseInt(intent.getStringExtra("result_calories"));
 
-        button = (Button) findViewById(R.id.button_to_evening);1
+        button = (Button) findViewById(R.id.button_to_evening);
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         TextView date_field = (TextView)findViewById(R.id.date);
         date_field.setText(date);
