@@ -20,7 +20,7 @@ import java.util.List;
 
 public class Result_Morning extends AppCompatActivity {
     Button button;
-    Button button_map;
+    //Button button_map;
     ListView morning_list, lunch_dinner_list;
 
     @Override
@@ -65,14 +65,14 @@ public class Result_Morning extends AppCompatActivity {
             }
         });
 
-        button_map = (Button) findViewById(R.id.button_to_map);
-        button_map.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Result_Morning.this, mapFragment.class);
-                startActivity(intent);
-            }
-        });
+//        button_map = (Button) findViewById(R.id.button_to_map);
+//        button_map.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Result_Morning.this, recmap.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
         // Show morning database
