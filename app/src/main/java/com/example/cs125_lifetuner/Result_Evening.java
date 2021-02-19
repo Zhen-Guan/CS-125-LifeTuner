@@ -31,9 +31,6 @@ public class Result_Evening extends AppCompatActivity {
             case R.id.morning:
                 openMorningPage();
                 break;
-            case R.id.evening:
-                openEveningPage();
-                break;
             case R.id.afternoon:
                 openAfternoonPage();
                 break;
@@ -47,6 +44,7 @@ public class Result_Evening extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result__evening);
+
         button = (Button) findViewById(R.id.button_to_home);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,12 +73,12 @@ public class Result_Evening extends AppCompatActivity {
     }
 
     public void openMorningPage(){
-        Intent intent = new Intent(this, Result_Morning.class);
+        Intent intent = new Intent(this, Result_Food.class);
         startActivity(intent);
     }
 
     public void openAfternoonPage(){
-        Intent intent = new Intent(this, Result_Afternoon.class);
+        Intent intent = new Intent(this, Result_Exercise.class);
         startActivity(intent);
     }
 

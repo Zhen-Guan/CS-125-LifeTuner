@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#87CEEB"
-    tools:context=".Result_Morning">
+    tools:context=".Result_Food">
 
     <!--        //在UI的xml中同样需要加上这一行作为一个整体的渐变Layout-->
     <LinearLayout

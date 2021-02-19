@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#87CEEB"
-    tools:context=".Result_Morning">
+    tools:context=".Result_Food">
 
     <!--        //在UI的xml中同样需要加上这一行作为一个整体的渐变Layout-->
     <LinearLayout
@@ -85,6 +85,15 @@
         app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintStart_toStartOf="parent" />
 
+
+    <EditText
+        android:id="@+id/user_name"
+        android:layout_width="322dp"
+        android:layout_height="39dp"
+        android:hint="User Name"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
@@ -94,12 +103,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="322dp"
-        android:layout_height="39dp"
-        android:hint="User Name"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword" />
 
     <Button
         android:id="@+id/signup_button"

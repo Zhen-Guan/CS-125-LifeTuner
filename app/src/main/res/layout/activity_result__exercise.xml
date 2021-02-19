@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#87CEEB"
-    tools:context=".Result_Morning">
+    tools:context=".Result_Food">
 
     <!--        //在UI的xml中同样需要加上这一行作为一个整体的渐变Layout-->
     <LinearLayout
@@ -55,7 +55,7 @@
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        android:text="Lunch Menu"
+        android:text="Exercise Locations"
         android:textColor="@color/white"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -89,7 +89,7 @@
                 android:layout_centerInParent="false"
                 android:gravity="center_horizontal"
                 android:padding="1dp"
-                android:text="first"
+                android:text="Anteater Recreation Center"
                 android:textColor="@color/black"
                 android:textSize="18sp"></TextView>
 
@@ -100,7 +100,7 @@
                 android:layout_centerInParent="false"
                 android:gravity="center_horizontal"
                 android:padding="1dp"
-                android:text="second"
+                android:text="Life Time Athletic"
                 android:textColor="@color/black"
                 android:textSize="18sp"></TextView>
 
@@ -111,7 +111,18 @@
                 android:layout_centerInParent="false"
                 android:gravity="center_horizontal"
                 android:padding="1dp"
-                android:text="third"
+                android:text="9Round Fitness"
+                android:textColor="@color/black"
+                android:textSize="18sp"></TextView>
+
+            <TextView
+                android:id="@+id/fourth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="false"
+                android:gravity="center_horizontal"
+                android:padding="1dp"
+                android:text="Motion Fitness Group"
                 android:textColor="@color/black"
                 android:textSize="18sp"></TextView>
 
@@ -128,7 +139,7 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:gravity="start|top"
-        android:text="Exercise Location"
+        android:text="Types of Exercise"
         android:textColor="@color/white"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -156,38 +167,48 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/first_location"
+                android:id="@+id/first_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="false"
                 android:gravity="center_horizontal"
                 android:padding="1dp"
-                android:text="first"
+                android:text="Swimming"
                 android:textColor="@color/black"
                 android:textSize="18sp"></TextView>
 
             <TextView
-                android:id="@+id/second_location"
+                android:id="@+id/second_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="false"
                 android:gravity="center_horizontal"
                 android:padding="1dp"
-                android:text="second"
+                android:text="Weight Lifting"
                 android:textColor="@color/black"
                 android:textSize="18sp"></TextView>
 
             <TextView
-                android:id="@+id/third_location"
+                android:id="@+id/third_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="false"
                 android:gravity="center_horizontal"
                 android:padding="1dp"
-                android:text="third"
+                android:text="Basketball"
                 android:textColor="@color/black"
                 android:textSize="18sp"></TextView>
 
+            <TextView
+                android:id="@+id/fourth_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="false"
+                android:gravity="center_horizontal"
+                android:padding="1dp"
+                android:text="Soccer"
+                android:textColor="@color/black"
+                android:textSize="18sp"></TextView>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -200,7 +221,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="4dp"
         android:backgroundTint="#ffff99"
-        android:text="Go to Dinner"
+        android:text="Go to Home"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

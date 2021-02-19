@@ -6,7 +6,7 @@
         android:id="@+id/profile"
         android:orderInCategory="100"
         app:showAsAction="never"
-        android:title="Edit Profile">
+        android:title="Information Gather">
     </item>
     <item
         android:id="@+id/BMR"
@@ -18,19 +18,13 @@
         android:id="@+id/morning"
         android:orderInCategory="100"
         app:showAsAction="never"
-        android:title="Morning Recommendation">
+        android:title="Food Recommendation">
     </item>
     <item
         android:id="@+id/afternoon"
         android:orderInCategory="100"
         app:showAsAction="never"
-        android:title="Afternoon Recommendation">
-    </item>
-    <item
-        android:id="@+id/evening"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="Evening Recommendation">
+        android:title="Exercise Recommendation">
     </item>
 
 

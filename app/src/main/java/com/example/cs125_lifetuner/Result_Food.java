@@ -1,24 +1,23 @@
 package com.example.cs125_lifetuner;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
-public class Result_Morning extends AppCompatActivity {
+public class Result_Food extends AppCompatActivity {
     Button button;
     //Button button_map;
     ListView morning_list, lunch_dinner_list;
@@ -40,9 +39,6 @@ public class Result_Morning extends AppCompatActivity {
             case R.id.morning:
                 openMorningPage();
                 break;
-            case R.id.evening:
-                openEveningPage();
-                break;
             case R.id.afternoon:
                 openAfternoonPage();
                 break;
@@ -56,7 +52,11 @@ public class Result_Morning extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result__morning);
+        setContentView(R.layout.activity_result__food);
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        TextView date_field = (TextView)findViewById(R.id.date);
+        date_field.setText(date);
+
         button = (Button) findViewById(R.id.button_to_afternoon);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,18 +77,18 @@ public class Result_Morning extends AppCompatActivity {
 
         // Show morning database
         morning_list = findViewById(R.id.morning_list);
-        DataBaseHelper dataBaseHelper = new DataBaseHelper(Result_Morning.this);
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(Result_Food.this);
 
         List<FoodModel> allFoodMorning = dataBaseHelper.getAllFoodMorning();
 
-        ArrayAdapter foodArrayAdapterMorning = new ArrayAdapter<FoodModel>(Result_Morning.this, android.R.layout.simple_list_item_1, allFoodMorning);
+        ArrayAdapter foodArrayAdapterMorning = new ArrayAdapter<FoodModel>(Result_Food.this, android.R.layout.simple_list_item_1, allFoodMorning);
         morning_list.setAdapter(foodArrayAdapterMorning);
 
 
         //show lunch & dinner database
         lunch_dinner_list= findViewById((R.id.lunch_dinner_list));
         List<FoodModel> allFoodLunchDinner = dataBaseHelper.getAllFoodLunchDinner();
-        ArrayAdapter foodArrayAdapterLunchDinner = new ArrayAdapter<FoodModel>(Result_Morning.this, android.R.layout.simple_list_item_1, allFoodLunchDinner);
+        ArrayAdapter foodArrayAdapterLunchDinner = new ArrayAdapter<FoodModel>(Result_Food.this, android.R.layout.simple_list_item_1, allFoodLunchDinner);
         lunch_dinner_list.setAdapter(foodArrayAdapterLunchDinner);
 
 
@@ -106,7 +106,7 @@ public class Result_Morning extends AppCompatActivity {
 
 
     public void openLunchpage(){
-        Intent intent = new Intent(this, Result_Afternoon.class);
+        Intent intent = new Intent(this, Result_Exercise.class);
         startActivity(intent);
     }
 
@@ -116,12 +116,12 @@ public class Result_Morning extends AppCompatActivity {
     }
 
     public void openMorningPage(){
-        Intent intent = new Intent(this, Result_Morning.class);
+        Intent intent = new Intent(this, Result_Food.class);
         startActivity(intent);
     }
 
     public void openAfternoonPage(){
-        Intent intent = new Intent(this, Result_Afternoon.class);
+        Intent intent = new Intent(this, Result_Exercise.class);
         startActivity(intent);
     }
 

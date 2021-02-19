@@ -10,8 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
-public class Result_Afternoon extends AppCompatActivity {
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+public class Result_Exercise extends AppCompatActivity {
     private Button button;
 
     @Override
@@ -30,9 +35,6 @@ public class Result_Afternoon extends AppCompatActivity {
             case R.id.morning:
                 openMorningPage();
                 break;
-            case R.id.evening:
-                openEveningPage();
-                break;
             case R.id.afternoon:
                 openAfternoonPage();
                 break;
@@ -45,12 +47,16 @@ public class Result_Afternoon extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result__afternoon);
+        setContentView(R.layout.activity_result__exercise);
         button = (Button) findViewById(R.id.button_to_evening);
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        TextView date_field = (TextView)findViewById(R.id.date);
+        date_field.setText(date);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDinnerpage();
+                openEvaluationPage();
             }
         });
 
@@ -63,10 +69,6 @@ public class Result_Afternoon extends AppCompatActivity {
         //
     }
 
-    public void openDinnerpage(){
-        Intent intent = new Intent(this, Result_Evening.class);
-        startActivity(intent);
-    }
 
     public void openEvaluationPage(){
         Intent intent = new Intent(this, activity_health_evaluation.class);
@@ -74,19 +76,15 @@ public class Result_Afternoon extends AppCompatActivity {
     }
 
     public void openMorningPage(){
-        Intent intent = new Intent(this, Result_Morning.class);
+        Intent intent = new Intent(this, Result_Food.class);
         startActivity(intent);
     }
 
     public void openAfternoonPage(){
-        Intent intent = new Intent(this, Result_Afternoon.class);
+        Intent intent = new Intent(this, Result_Exercise.class);
         startActivity(intent);
     }
 
-    public void openEveningPage(){
-        Intent intent = new Intent(this, Result_Evening.class);
-        startActivity(intent);
-    }
 
     public void openProfile(){
         Intent intent = new Intent(this, info_gather.class);

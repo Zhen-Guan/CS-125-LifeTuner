@@ -2,14 +2,11 @@ package com.example.cs125_lifetuner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -36,9 +33,6 @@ public class info_gather extends AppCompatActivity {
                 break;
             case R.id.morning:
                 openMorningPage();
-                break;
-            case R.id.evening:
-                openEveningPage();
                 break;
             case R.id.afternoon:
                 openAfternoonPage();
@@ -147,12 +141,12 @@ public class info_gather extends AppCompatActivity {
     }
 
     public void openMorningPage(){
-        Intent intent = new Intent(this, Result_Morning.class);
+        Intent intent = new Intent(this, Result_Food.class);
         startActivity(intent);
     }
 
     public void openAfternoonPage(){
-        Intent intent = new Intent(this, Result_Afternoon.class);
+        Intent intent = new Intent(this, Result_Exercise.class);
         startActivity(intent);
     }
 

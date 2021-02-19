@@ -39,8 +39,8 @@
         <activity android:name=".activity_health_evaluation" />
         <activity android:name=".info_gather" />
         <activity android:name=".Result_Evening" />
-        <activity android:name=".Result_Afternoon" />
-        <activity android:name=".Result_Morning" />
+        <activity android:name=".Result_Exercise" />
+        <activity android:name=".Result_Food" />
         <activity android:name=".MainActivity" />
     </application>
 

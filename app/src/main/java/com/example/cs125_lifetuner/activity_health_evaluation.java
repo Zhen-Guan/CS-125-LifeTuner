@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class activity_health_evaluation extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -37,9 +36,6 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
             case R.id.morning:
                 openMorningPage();
                 break;
-            case R.id.evening:
-                openEveningPage();
-                break;
             case R.id.afternoon:
                 openAfternoonPage();
                 break;
@@ -57,7 +53,7 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
         btn_get_recommendation = findViewById(R.id.get_recommendation);
 
         btn_get_recommendation.setOnClickListener(v -> {
-            Intent i = new Intent(this, Result_Morning.class);
+            Intent i = new Intent(this, Result_Food.class);
             startActivity(i);
         });
 
@@ -141,12 +137,12 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
     }
 
     public void openMorningPage(){
-        Intent intent = new Intent(this, Result_Morning.class);
+        Intent intent = new Intent(this, Result_Food.class);
         startActivity(intent);
     }
 
     public void openAfternoonPage(){
-        Intent intent = new Intent(this, Result_Afternoon.class);
+        Intent intent = new Intent(this, Result_Exercise.class);
         startActivity(intent);
     }
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/purple_700"
-    tools:context=".Result_Morning">
+    tools:context=".Result_Food">
 
 
     <!--    //在UI的xml中同样需要加上这一行作为一个整体的渐变Layout-->
@@ -97,23 +97,11 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="4dp"
         android:backgroundTint="#ffff99"
-        android:text="Go to Lunch"
+        android:text="Go to recommended exercise location"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/button_to_map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginBottom="76dp"
-        android:backgroundTint="#ffff99"
-        android:text="recommended locations"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <ListView
         android:id="@+id/morning_list"
