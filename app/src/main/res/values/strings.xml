@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">LifeTuner</string>
+
+    <string-array name="activiy_level_array">
+        <item>Sedentary: little or no exercise</item>
+        <item>Light: exercise 1 to 3 times a week</item>
+        <item>Moderate: exercise 4 to 5 times a week</item>
+        <item>Active: daily ex. or INTENSE exercise 3 times a week</item>
+        <item>Very Active: INTENSE exercise 6 to 7 times a week</item>
+    </string-array>
+
+    <string-array name="target_weight_loss_array">
+        <item>Maintain Weight</item>
+        <item>Mild Weight Loss (0.25 kg per week)</item>
+        <item>Weight Loss (0.5 kg per week)</item>
+        <item>Extreme Weight Loss (1 kg per week)</item>
+    </string-array>
 </resources>

@@ -6,9 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class activity_health_evaluation extends AppCompatActivity {
 
@@ -48,16 +49,40 @@ public class activity_health_evaluation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_evaluation);
 
+
         btn_get_recommendation = findViewById(R.id.get_recommendation);
-        Intent intent=getIntent();
+        Intent intent = getIntent();
         TextView dmr=findViewById(R.id.bmr_value);
-        dmr.setText(intent.getStringExtra("bmr_value"));
         TextView cur_weight=findViewById(R.id.current_weight_value);
-        cur_weight.setText(intent.getStringExtra("current_weight"));
         TextView tar_weight=findViewById(R.id.target_weight_value);
+        TextView cal=findViewById(R.id.needed_calories);
+
+        dmr.setText(intent.getStringExtra("bmr_value"));
+        cur_weight.setText(intent.getStringExtra("current_weight"));
         tar_weight.setText(intent.getStringExtra("target_weight"));
-        TextView cal=findViewById(R.id.bmr_value2);
         cal.setText(intent.getStringExtra("calories"));
+
+
+        //设置activity level spinner
+        Spinner activity_level_spinner = (Spinner) findViewById(R.id.activity_level_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> al_adapter = ArrayAdapter.createFromResource(this,
+                R.array.activiy_level_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        al_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        activity_level_spinner.setAdapter(al_adapter);
+
+
+        //设置weight loss spinner
+        Spinner weight_loss_spinner = (Spinner) findViewById(R.id.weight_loss_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> wl_adapter = ArrayAdapter.createFromResource(this,
+                R.array.target_weight_loss_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        wl_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        weight_loss_spinner.setAdapter(wl_adapter);
 
 
         btn_get_recommendation.setOnClickListener(v -> {

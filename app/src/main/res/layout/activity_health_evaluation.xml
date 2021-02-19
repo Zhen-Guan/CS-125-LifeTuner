@@ -27,8 +27,8 @@
 
     <TextView
         android:id="@+id/text_daily_calories_needed"
-        android:layout_width="326dp"
-        android:layout_height="66dp"
+        android:layout_width="303dp"
+        android:layout_height="57dp"
         android:gravity="center"
         android:text="TODAY YOU NEED"
         android:textColor="@color/white"
@@ -36,13 +36,12 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.364"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.739" />
+        app:layout_constraintVertical_bias="0.759" />
 
     <TextView
-        android:id="@+id/bmr_value2"
+        android:id="@+id/needed_calories"
         android:layout_width="165dp"
         android:layout_height="44dp"
         android:gravity="center"
@@ -51,10 +50,10 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintHorizontal_bias="0.325"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_current_bmr_value"
-        app:layout_constraintVertical_bias="0.808" />
+        app:layout_constraintVertical_bias="0.79" />
 
     <TextView
         android:id="@+id/bmr_value"
@@ -68,10 +67,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.191" />
+        app:layout_constraintVertical_bias="0.164" />
 
     <TextView
-        android:id="@+id/calories"
+        android:id="@+id/text_calories"
         android:layout_width="111dp"
         android:layout_height="38dp"
         android:gravity="center"
@@ -80,40 +79,40 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.663"
+        app:layout_constraintHorizontal_bias="0.69"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.835" />
+        app:layout_constraintVertical_bias="0.821" />
 
     <TextView
-        android:id="@+id/current_weight"
+        android:id="@+id/text_current_weight"
         android:layout_width="162dp"
         android:layout_height="64dp"
         android:gravity="center"
         android:text="Current Weight"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/text_daily_calories_needed"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintHorizontal_bias="0.18"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bmr_value"
-        app:layout_constraintVertical_bias="0.099" />
+        app:layout_constraintVertical_bias="0.093" />
 
     <TextView
-        android:id="@+id/target_weight"
+        android:id="@+id/text_target_weight"
         android:layout_width="162dp"
         android:layout_height="64dp"
         android:gravity="center"
         android:text="Target Weight"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/text_daily_calories_needed"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.895"
+        app:layout_constraintHorizontal_bias="0.831"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bmr_value"
-        app:layout_constraintVertical_bias="0.099" />
+        app:layout_constraintVertical_bias="0.093" />
 
     <TextView
         android:id="@+id/current_weight_value"
@@ -125,25 +124,10 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/text_daily_calories_needed"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.206"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bmr_value"
-        app:layout_constraintVertical_bias="0.345" />
-
-    <TextView
-        android:id="@+id/weight_indicator"
-        android:layout_width="94dp"
-        android:layout_height="86dp"
-        android:gravity="center"
-        android:text="↓"
-        android:textColor="#cc5333"
-        android:textSize="60sp"
-        app:layout_constraintBottom_toTopOf="@+id/text_daily_calories_needed"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bmr_value"
-        app:layout_constraintVertical_bias="0.277" />
+        app:layout_constraintVertical_bias="0.266" />
 
     <TextView
         android:id="@+id/target_weight_value"
@@ -155,55 +139,10 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/text_daily_calories_needed"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.796"
+        app:layout_constraintHorizontal_bias="0.768"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bmr_value"
-        app:layout_constraintVertical_bias="0.345" />
-
-    <SeekBar
-        android:id="@+id/desired_activity_seekbar"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="299dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="448dp"
-        android:indeterminate="false"
-        android:max="4"
-        android:progress="0"
-        android:thumb="@android:drawable/btn_star_big_on"
-        app:layout_constraintBottom_toTopOf="@+id/text_daily_calories_needed"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/desired_activity_level"
-        android:layout_width="176dp"
-        android:layout_height="65dp"
-        android:gravity="center"
-        android:text="Desired Activity Level"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/desired_activity_seekbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.286"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weight_indicator"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/desired_activity_level_indicator"
-        android:layout_width="114dp"
-        android:layout_height="62dp"
-        android:gravity="center"
-        android:text="LOW"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/desired_activity_seekbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/desired_activity_level"
-        app:layout_constraintTop_toBottomOf="@+id/weight_indicator"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.266" />
 
     <Button
         android:id="@+id/get_recommendation"
@@ -214,9 +153,58 @@
         app:backgroundTint="#ffff99"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_daily_calories_needed"
-        app:layout_constraintVertical_bias="0.769" />
+        app:layout_constraintVertical_bias="0.431" />
+
+    <Spinner
+        android:id="@+id/activity_level_spinner"
+        android:layout_width="327dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="348dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/weight_loss_spinner"
+        android:layout_width="327dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="440dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_activity_level"
+        android:layout_width="131dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="316dp"
+        android:gravity="center|left"
+        android:text="Activity Level"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_target_weight_loss"
+        android:layout_width="131dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="408dp"
+        android:gravity="center|left"
+        android:text="Target Weight Loss"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,16 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 public class info_gather extends AppCompatActivity {
 
+    EditText weight, height, age;
+    Button btn_enter;
+    String gender;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -45,68 +50,95 @@ public class info_gather extends AppCompatActivity {
         return true;
     }
 
-    private EditText weight;
-    private EditText height;
-    private EditText age;
-    Button btn_enter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_gather);
 
+
+        //先找到所有view
         weight =findViewById(R.id.weight);
         height = findViewById(R.id.height);
         age = findViewById(R.id.age);
         btn_enter = findViewById(R.id.enter);
 
+
+        //采集玩家数据完毕后的enter按钮
         btn_enter.setOnClickListener(v -> {
-            try
-            {
-                int w = Integer.parseInt(weight.getText().toString().trim());
-                int h = Integer.parseInt(height.getText().toString().trim());
-                int a = Integer.parseInt(age.getText().toString().trim());
 
-                if (a > 150) {
-                    Toast.makeText(info_gather.this, "Age is too large", Toast.LENGTH_SHORT).show();
-                }
-                else if (w > 1400) {
-                    Toast.makeText(info_gather.this, "Weight is too large", Toast.LENGTH_SHORT).show();
-                }
-                else if (h > 272) {
-                    Toast.makeText(info_gather.this, "Height is too large", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Intent intent = new Intent(info_gather.this, activity_health_evaluation.class);
-
-                    final double d = (10 * w) + (6.25 * h) - 5 * a;
-                    String bmr = String.valueOf(Math.round(d));
-                    String target = String.valueOf((h - 80) * 0.7);
-                    String calories = String.valueOf(Math.round((d) * 1.2));
-
-                    intent.putExtra("current_weight", String.valueOf(w));
-                    intent.putExtra("bmr_value", bmr);
-                    intent.putExtra("target_weight", target);
-                    intent.putExtra("calories", calories);
-
-                    startActivity(intent);
-                 }
-            } catch (Exception e){
-                Toast.makeText(info_gather.this, "Please enter all blanks", Toast.LENGTH_SHORT).show();
+            if ( !((RadioButton) findViewById(R.id.radio_female)).isChecked() && !((RadioButton) findViewById(R.id.radio_male)).isChecked()){
+                Toast.makeText(this, "Please select gender", Toast.LENGTH_SHORT).show();
             }
+
+            else{
+                try {
+                    int w = Integer.parseInt(weight.getText().toString().trim());
+                    int h = Integer.parseInt(height.getText().toString().trim());
+                    int a = Integer.parseInt(age.getText().toString().trim());
+
+                    if (a > 150) {
+                        Toast.makeText(info_gather.this, "Age is too large", Toast.LENGTH_SHORT).show();
+                    }
+                    else if (w > 1400) {
+                        Toast.makeText(info_gather.this, "Weight is too large", Toast.LENGTH_SHORT).show();
+                    }
+                    else if (h > 272) {
+                        Toast.makeText(info_gather.this, "Height is too large", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Intent intent = new Intent(info_gather.this, activity_health_evaluation.class);
+
+                        // we use Mifflin-St Jeor Equation
+                        final double d = (gender.equals("male")) ? (10*w + 6.25*h - 5*a + 5) : (10*w + 6.25*h - 5*a -161);
+
+                        // we use J. D. Robinson Formula (1983)
+                        double target_weight = (gender.equals("male")) ? ((h > 152) ? 52 + (h-152)*1.9/2.5 : 52) : (h > 152) ? (49 + (h-152)*1.7/2.5) : 49;
+
+                        String bmr = String.valueOf(Math.round(d));
+                        String target = String.valueOf(target_weight);
+                        String calories = String.valueOf(Math.round((d) * 1.2));
+
+                        intent.putExtra("current_weight", String.valueOf(w));
+                        intent.putExtra("bmr_value", bmr);
+                        intent.putExtra("target_weight", target);
+                        intent.putExtra("calories", calories);
+
+                        startActivity(intent);
+                     }
+                } catch (Exception e){
+                    Toast.makeText(info_gather.this, "Please enter all blanks", Toast.LENGTH_SHORT).show();
+                }
+            }
+
 
 
         });
 
         //背景代码 每次建立新的activity都可以把这一段复制到onCreate方法中
-        LinearLayout background_Layout = (LinearLayout) findViewById(R.id.main_container);
-        AnimationDrawable animationDrawable = (AnimationDrawable) background_Layout.getBackground();
-        animationDrawable.setEnterFadeDuration(4000);
-        animationDrawable.setExitFadeDuration(4000);
-        animationDrawable.start();
+//        LinearLayout background_Layout = (LinearLayout) findViewById(R.id.main_container);
+//        AnimationDrawable animationDrawable = (AnimationDrawable) background_Layout.getBackground();
+//        animationDrawable.setEnterFadeDuration(4000);
+//        animationDrawable.setExitFadeDuration(4000);
+//        animationDrawable.start();
         //
     }
 
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radio_female:
+                if (checked)
+                    gender = "female";
+                    break;
+            case R.id.radio_male:
+                if (checked)
+                    gender = "male";
+                    break;
+        }
+    }
 
 
     public void openEvaluationPage(){
