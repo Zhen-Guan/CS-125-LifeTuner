@@ -6,14 +6,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class activity_health_evaluation extends AppCompatActivity {
+public class activity_health_evaluation extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     Button btn_get_recommendation;
+    String selected_activity_level, selected_weight_loss;
+    int al_calories, wl_calories, base_calories;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -49,8 +54,16 @@ public class activity_health_evaluation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_evaluation);
 
-
         btn_get_recommendation = findViewById(R.id.get_recommendation);
+
+        btn_get_recommendation.setOnClickListener(v -> {
+            Intent i = new Intent(this, Result_Morning.class);
+            startActivity(i);
+        });
+
+        selected_activity_level = "Sedentary: little or no exercise";
+        selected_weight_loss = "Maintain Weight";
+
         Intent intent = getIntent();
         TextView dmr=findViewById(R.id.bmr_value);
         TextView cur_weight=findViewById(R.id.current_weight_value);
@@ -60,8 +73,9 @@ public class activity_health_evaluation extends AppCompatActivity {
         dmr.setText(intent.getStringExtra("bmr_value"));
         cur_weight.setText(intent.getStringExtra("current_weight"));
         tar_weight.setText(intent.getStringExtra("target_weight"));
-        cal.setText(intent.getStringExtra("calories"));
 
+        base_calories = Integer.parseInt(intent.getStringExtra("calories"));
+        cal.setText(intent.getStringExtra("calories"));
 
         //设置activity level spinner
         Spinner activity_level_spinner = (Spinner) findViewById(R.id.activity_level_spinner);
@@ -72,6 +86,8 @@ public class activity_health_evaluation extends AppCompatActivity {
         al_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         activity_level_spinner.setAdapter(al_adapter);
+        activity_level_spinner.setOnItemSelectedListener(this);
+        //
 
 
         //设置weight loss spinner
@@ -83,15 +99,8 @@ public class activity_health_evaluation extends AppCompatActivity {
         wl_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         weight_loss_spinner.setAdapter(wl_adapter);
-
-
-        btn_get_recommendation.setOnClickListener(v -> {
-            Intent i = new Intent(this, Result_Morning.class);
-            startActivity(i);
-        });
-
-
-
+        weight_loss_spinner.setOnItemSelectedListener(this);
+        //
 
 
         //背景代码 每次建立新的activity都可以把这一段复制到onCreate方法中
@@ -101,6 +110,28 @@ public class activity_health_evaluation extends AppCompatActivity {
 //        animationDrawable.setExitFadeDuration(4000);
 //        animationDrawable.start();
         //
+    }
+
+
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (parent.getItemAtPosition(0).equals("Sedentary: little or no exercise")) {
+            selected_activity_level = parent.getItemAtPosition(position).toString();
+            changeCalTextAl(position);
+        }
+        else if (parent.getItemAtPosition(0).equals("Maintain Weight")) {
+            selected_weight_loss = parent.getItemAtPosition(position).toString();
+            changeCalTextWl(position);
+        }
+    }
+
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        selected_activity_level = "Sedentary: little or no exercise";
+        selected_weight_loss = "Maintain Weight";
+
     }
 
 
@@ -128,4 +159,71 @@ public class activity_health_evaluation extends AppCompatActivity {
         Intent intent = new Intent(this, info_gather.class);
         startActivity(intent);
     }
+
+    public void changeCalTextAl(int position){
+        TextView cal=findViewById(R.id.needed_calories);
+        if (position == 0){
+            cal.setText((String.valueOf( (int) (base_calories * CheckCurrentWL()))));
+        }
+        else if (position == 1){
+            cal.setText(String.valueOf((int) (base_calories * 1.2 * CheckCurrentWL())));
+        }
+        else if (position == 2){
+            cal.setText(String.valueOf((int) (base_calories * 1.345 * CheckCurrentWL())));
+        }
+        else if (position == 3){
+            cal.setText(String.valueOf((int) (base_calories * 1.465 * CheckCurrentWL())));
+        }
+        else if (position == 4){
+            cal.setText(String.valueOf((int) (base_calories * 1.55 * CheckCurrentWL())));
+        }
+    }
+
+    public void changeCalTextWl(int position){
+        TextView cal=findViewById(R.id.needed_calories);
+        if (position == 0){
+            cal.setText(String.valueOf((int) (base_calories * CheckCurrentAL())));
+        }
+        else if (position == 1){
+            cal.setText(String.valueOf((int) (base_calories * 0.87 * CheckCurrentAL())));
+        }
+        else if (position == 2){
+            cal.setText(String.valueOf((int) (base_calories * 0.75 * CheckCurrentAL())));
+        }
+        else if (position == 3){
+            cal.setText(String.valueOf((int) (base_calories * 0.56 * CheckCurrentAL())));
+        }
+    }
+
+
+    public double CheckCurrentAL(){
+        switch (selected_activity_level) {
+            case "Sedentary: little or no exercise":
+                return 1.0;
+            case "Light: exercise 1 to 3 times a week":
+                return 1.2;
+            case "Moderate: exercise 4 to 5 times a week":
+                return 1.345;
+            case "Active: daily ex. or INTENSE exercise 3 times a week":
+                return 1.465;
+            case "Very Active: INTENSE exercise 6 to 7 times a week":
+                return 1.55;
+        }
+        return 0;
+    }
+
+    public double CheckCurrentWL(){
+        switch (selected_weight_loss) {
+            case "Maintain Weight":
+                return 1.0;
+            case "Mild Weight Loss (0.25 kg per week)":
+                return 0.87;
+            case "Weight Loss (0.5 kg per week)":
+                return 0.75;
+            case "Extreme Weight Loss (1 kg per week)":
+                return 0.56;
+        }
+        return 0;
+    }
+
 }
