@@ -11,6 +11,7 @@
 
     <string-array name="target_weight_loss_array">
         <item>Maintain Weight</item>
+        <item>Increase Muscles!</item>
         <item>Mild Weight Loss (0.25 kg per week)</item>
         <item>Weight Loss (0.5 kg per week)</item>
         <item>Extreme Weight Loss (1 kg per week)</item>

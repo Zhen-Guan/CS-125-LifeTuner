@@ -2,12 +2,14 @@ package com.example.cs125_lifetuner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -84,7 +86,6 @@ public class info_gather extends AppCompatActivity {
 
                         // we use Mifflin-St Jeor Equation
                         final double d = (gender.equals("male")) ? (10*w + 6.25*h - 5*a + 5) : (10*w + 6.25*h - 5*a -161);
-
                         // we use J. D. Robinson Formula (1983)
                         double target_weight = (gender.equals("male")) ? ((h > 152) ? 52 + (h-152)*1.9/2.5 : 52) : (h > 152) ? (49 + (h-152)*1.7/2.5) : 49;
 
@@ -109,11 +110,11 @@ public class info_gather extends AppCompatActivity {
         });
 
         //背景代码 每次建立新的activity都可以把这一段复制到onCreate方法中
-//        LinearLayout background_Layout = (LinearLayout) findViewById(R.id.main_container);
-//        AnimationDrawable animationDrawable = (AnimationDrawable) background_Layout.getBackground();
-//        animationDrawable.setEnterFadeDuration(4000);
-//        animationDrawable.setExitFadeDuration(4000);
-//        animationDrawable.start();
+        LinearLayout background_Layout = (LinearLayout) findViewById(R.id.main_container);
+        AnimationDrawable animationDrawable = (AnimationDrawable) background_Layout.getBackground();
+        animationDrawable.setEnterFadeDuration(4000);
+        animationDrawable.setExitFadeDuration(4000);
+        animationDrawable.start();
         //
     }
 

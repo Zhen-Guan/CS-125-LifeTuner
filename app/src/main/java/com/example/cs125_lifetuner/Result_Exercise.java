@@ -18,6 +18,7 @@ import java.util.Locale;
 
 public class Result_Exercise extends AppCompatActivity {
     private Button button;
+    int result_calories;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -48,17 +49,27 @@ public class Result_Exercise extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result__exercise);
-        button = (Button) findViewById(R.id.button_to_evening);
+
+        Intent intent = getIntent();
+        result_calories = Integer.parseInt(intent.getStringExtra("result_calories"));
+
+        button = (Button) findViewById(R.id.button_to_evening);1
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         TextView date_field = (TextView)findViewById(R.id.date);
         date_field.setText(date);
+//
 
+        // 这里我 （莫昊卿） 改了一下，因为exercise page 跳到的那个“Home” Button 不稳定，有时候会跳到evaluation page， 有时候却跳到food
+        // 我这里先统一改成跳到food 推荐page
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openEvaluationPage();
+                Intent i = new Intent(Result_Exercise.this , Result_Food.class);
+                i.putExtra("result_calories", String.valueOf(result_calories));
+                startActivity(i);
             }
         });
+        //更改完毕
 
         //背景代码 每次建立新的activity都可以把这一段复制到onCreate方法中
         LinearLayout background_Layout = (LinearLayout) findViewById(R.id.main_container);

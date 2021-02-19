@@ -10,17 +10,13 @@
 
 
     <!--    //在UI的xml中同样需要加上这一行作为一个整体的渐变Layout-->
-    <!--    <LinearLayout-->
-    <!--        android:id="@+id/main_container"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:background="@drawable/background"-->
-    <!--        android:orientation="vertical">-->
-
-    <!--        <ListView-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent" />-->
-    <!--    </LinearLayout>-->
+    <LinearLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:orientation="vertical">
+    </LinearLayout>
     <!--    //-->
 
 

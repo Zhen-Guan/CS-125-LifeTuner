@@ -37,10 +37,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public List<FoodModel> getAllFoodMorning(){
+    public List<FoodModel> getAllFoodMorning(int calories){
         List<FoodModel> returnList = new ArrayList<>();
         //getdata from database
-        String queryString = "SELECT * FROM " + FOOD_TABLE + " WHERE FOOD_TIME LIKE \"%m%\"" + " ORDER BY FOOD_CALORIES DESC";
+        String queryString = "SELECT * FROM " + FOOD_TABLE + " WHERE FOOD_TIME LIKE \"%m%\" AND FOOD_CALORIES < " + calories + " ORDER BY FOOD_CALORIES DESC";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -61,14 +61,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
 
         cursor.close();
-        db.close();
+
         return returnList;
     }
 
-    public List<FoodModel> getAllFoodLunchDinner(){
+    public List<FoodModel> getAllFoodLunchDinner(int calories){
         List<FoodModel> returnList = new ArrayList<>();
         //getdata from database
-        String queryString = "SELECT * FROM " + FOOD_TABLE + " WHERE FOOD_TIME LIKE \"mae\"" + " ORDER BY FOOD_CALORIES DESC";
+        String queryString = "SELECT * FROM " + FOOD_TABLE + " WHERE FOOD_TIME LIKE \"%ae\" AND FOOD_CALORIES < " + calories + " ORDER BY FOOD_CALORIES DESC";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -89,10 +89,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
 
         cursor.close();
-        db.close();
         return returnList;
     }
 
+
+    //暂时无用
     public boolean addOne(FoodModel foodModel){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();

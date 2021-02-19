@@ -3,6 +3,7 @@ package com.example.cs125_lifetuner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -17,7 +19,7 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
 
     Button btn_get_recommendation;
     String selected_activity_level, selected_weight_loss;
-    int al_calories, wl_calories, base_calories;
+    int result_calories, base_calories;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -53,7 +55,9 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
         btn_get_recommendation = findViewById(R.id.get_recommendation);
 
         btn_get_recommendation.setOnClickListener(v -> {
+
             Intent i = new Intent(this, Result_Food.class);
+            i.putExtra("result_calories", String.valueOf(result_calories));
             startActivity(i);
         });
 
@@ -71,6 +75,7 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
         tar_weight.setText(intent.getStringExtra("target_weight"));
 
         base_calories = Integer.parseInt(intent.getStringExtra("calories"));
+        result_calories = base_calories;
         cal.setText(intent.getStringExtra("calories"));
 
         //设置activity level spinner
@@ -100,11 +105,11 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
 
 
         //背景代码 每次建立新的activity都可以把这一段复制到onCreate方法中
-//        LinearLayout background_Layout = (LinearLayout) findViewById(R.id.main_container);
-//        AnimationDrawable animationDrawable = (AnimationDrawable) background_Layout.getBackground();
-//        animationDrawable.setEnterFadeDuration(4000);
-//        animationDrawable.setExitFadeDuration(4000);
-//        animationDrawable.start();
+        LinearLayout background_Layout = (LinearLayout) findViewById(R.id.main_container);
+        AnimationDrawable animationDrawable = (AnimationDrawable) background_Layout.getBackground();
+        animationDrawable.setEnterFadeDuration(4000);
+        animationDrawable.setExitFadeDuration(4000);
+        animationDrawable.start();
         //
     }
 
@@ -159,35 +164,49 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
     public void changeCalTextAl(int position){
         TextView cal=findViewById(R.id.needed_calories);
         if (position == 0){
-            cal.setText((String.valueOf( (int) (base_calories * CheckCurrentWL()))));
+            result_calories = (int) (base_calories * CheckCurrentWL());
+            cal.setText((String.valueOf(result_calories)));
+
         }
         else if (position == 1){
-            cal.setText(String.valueOf((int) (base_calories * 1.2 * CheckCurrentWL())));
+            result_calories = (int) (base_calories * 1.2 * CheckCurrentWL());
+            cal.setText((String.valueOf(result_calories)));
         }
         else if (position == 2){
-            cal.setText(String.valueOf((int) (base_calories * 1.345 * CheckCurrentWL())));
+            result_calories = (int) (base_calories * 1.345 * CheckCurrentWL());
+            cal.setText((String.valueOf(result_calories)));
         }
         else if (position == 3){
-            cal.setText(String.valueOf((int) (base_calories * 1.465 * CheckCurrentWL())));
+            result_calories = (int) (base_calories * 1.465 * CheckCurrentWL());
+            cal.setText((String.valueOf(result_calories)));
         }
         else if (position == 4){
-            cal.setText(String.valueOf((int) (base_calories * 1.55 * CheckCurrentWL())));
+            result_calories = (int) (base_calories * 1.551 * CheckCurrentWL());
+            cal.setText((String.valueOf(result_calories)));
         }
     }
 
     public void changeCalTextWl(int position){
         TextView cal=findViewById(R.id.needed_calories);
         if (position == 0){
-            cal.setText(String.valueOf((int) (base_calories * CheckCurrentAL())));
+            result_calories = (int) (base_calories * CheckCurrentAL());
+            cal.setText(String.valueOf(result_calories));
         }
         else if (position == 1){
-            cal.setText(String.valueOf((int) (base_calories * 0.87 * CheckCurrentAL())));
+            result_calories = (int) (base_calories * CheckCurrentAL() + 500);
+            cal.setText(String.valueOf(result_calories));
         }
         else if (position == 2){
-            cal.setText(String.valueOf((int) (base_calories * 0.75 * CheckCurrentAL())));
+            result_calories = (int) (base_calories * 0.882 * CheckCurrentAL());
+            cal.setText(String.valueOf(result_calories));
         }
         else if (position == 3){
-            cal.setText(String.valueOf((int) (base_calories * 0.56 * CheckCurrentAL())));
+            result_calories = (int) (base_calories * 0.764 * CheckCurrentAL());
+            cal.setText(String.valueOf(result_calories));
+        }
+        else if (position == 4){
+            result_calories = (int) (base_calories * 0.571 * CheckCurrentAL());
+            cal.setText(String.valueOf(result_calories));
         }
     }
 
@@ -211,6 +230,7 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
     public double CheckCurrentWL(){
         switch (selected_weight_loss) {
             case "Maintain Weight":
+            case "Increase Muscles!":
                 return 1.0;
             case "Mild Weight Loss (0.25 kg per week)":
                 return 0.87;
