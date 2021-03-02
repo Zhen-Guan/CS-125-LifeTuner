@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1034580125166",
+    "firebase_url": "https://cs125-group31-default-rtdb.firebaseio.com",
+    "project_id": "cs125-group31",
+    "storage_bucket": "cs125-group31.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034580125166:android:db025608811a8094bedaff",
+        "android_client_info": {
+          "package_name": "com.example.cs125_lifetuner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034580125166-jl0vfkii88ov3allmvactguga8lblkrr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6KVggCDhTOVy-v7JuULvakgYdFtv1S3E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034580125166-jl0vfkii88ov3allmvactguga8lblkrr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

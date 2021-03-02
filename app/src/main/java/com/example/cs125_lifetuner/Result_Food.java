@@ -91,6 +91,7 @@ public class Result_Food extends AppCompatActivity {
         morning_list = findViewById(R.id.morning_list);
         DataBaseHelper dataBaseHelper = new DataBaseHelper(Result_Food.this);
         List<FoodModel> allFoodMorning = dataBaseHelper.getAllFoodMorning((int) (0.25 * result_calories / 1.86));
+        Toast.makeText(this, allFoodMorning.toString(), Toast.LENGTH_SHORT).show();
         ArrayAdapter foodArrayAdapterMorning = new ArrayAdapter<FoodModel>(Result_Food.this, android.R.layout.simple_list_item_1, allFoodMorning);
         morning_list.setAdapter(foodArrayAdapterMorning);
 

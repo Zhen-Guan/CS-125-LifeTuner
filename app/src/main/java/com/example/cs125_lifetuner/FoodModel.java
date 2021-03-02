@@ -1,14 +1,14 @@
 package com.example.cs125_lifetuner;
 
 public class FoodModel {
-    private int id;
+
     private String foodName;
     private String foodTime;  // we have 'morning', 'afternoon', and 'evening'
     private int foodCalories;
 
     //Cs
-    public FoodModel(int id, String name, String time, int calories) {
-        this.id = id;
+    public FoodModel(String name, String time, int calories) {
+
         this.foodName = name;
         this.foodTime = time;
         this.foodCalories = calories;
@@ -24,13 +24,13 @@ public class FoodModel {
     }
 
     //getters and setters
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
 
     public String getfoodName() {

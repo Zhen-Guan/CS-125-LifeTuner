@@ -53,7 +53,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 String foodTime = cursor.getString(2);
                 int foodCalories = cursor.getInt(3);
 
-                FoodModel newFood = new FoodModel(foodID, foodName, foodTime, foodCalories);
+                FoodModel newFood = new FoodModel(foodName, foodTime, foodCalories);
                 returnList.add(newFood);
             }
             while(cursor.moveToNext());
@@ -81,7 +81,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 String foodTime = cursor.getString(2);
                 int foodCalories = cursor.getInt(3);
 
-                FoodModel newFood = new FoodModel(foodID, foodName, foodTime, foodCalories);
+                FoodModel newFood = new FoodModel(foodName, foodTime, foodCalories);
                 returnList.add(newFood);
             }
             while(cursor.moveToNext());
