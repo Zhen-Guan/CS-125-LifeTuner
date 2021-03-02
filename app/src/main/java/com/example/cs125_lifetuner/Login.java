@@ -39,6 +39,25 @@ public class Login extends AppCompatActivity {
         animationDrawable.setExitFadeDuration(4000);
         animationDrawable.start();
         //
+        ArrayList<FoodModel> foodlist = new ArrayList<>();
+        foodReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot foodSnap : snapshot.getChildren()){
+                    FoodModel food = foodSnap.getValue(FoodModel.class);
+                    Toast.makeText(Login.this, "1", Toast.LENGTH_SHORT).show();
+                    foodlist.add(food);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        Toast.makeText(this, foodlist.toString(), Toast.LENGTH_SHORT).show();
+
     }
 
     public void openInfoPage(){

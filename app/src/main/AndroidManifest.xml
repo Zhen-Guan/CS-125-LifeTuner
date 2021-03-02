@@ -7,6 +7,7 @@
          location permissions for the "MyLocation" functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CS125LifeTuner">
-        <activity android:name=".recmap"></activity>
+        <activity android:name=".test_firebase_database">
+
+        </activity>
+        <activity android:name=".recmap" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -29,19 +33,22 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".SignUp" />
-        <activity android:name=".Login">
+        <activity android:name=".Login"/>
+
+        <activity android:name=".activity_health_evaluation" />
+        <activity android:name=".info_gather" />
+        <activity android:name=".Result_Evening" />
+        <activity android:name=".Result_Exercise" />
+        <activity android:name=".Result_Food" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity_health_evaluation" />
-        <activity android:name=".info_gather" />
-        <activity android:name=".Result_Evening" />
-        <activity android:name=".Result_Exercise" />
-        <activity android:name=".Result_Food" />
-        <activity android:name=".MainActivity" />
-    </application>
+
+
+</application>
 
 </manifest>
