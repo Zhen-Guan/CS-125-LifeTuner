@@ -38,16 +38,18 @@
         android:layout_margin="20dp">
 
         <RadioButton
-            android:id="@+id/radioMale"
-            android:layout_width="wrap_content"
+            android:id="@+id/radio_male"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="male"
-            android:checked="true" />
+            android:checked="true"
+            android:onClick="onRadioButtonClicked"
+            android:text="male" />
 
         <RadioButton
-            android:id="@+id/radioFemale"
+            android:id="@+id/radio_female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
             android:text="female" />
 
     </RadioGroup>
@@ -74,15 +76,12 @@
         android:layout_height="60dp"
         android:layout_marginStart="65dp"
         android:layout_marginLeft="11dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:ems="10"
         android:hint="Enter Password"
-        android:inputType="numberPassword"
+        android:inputType="textPassword"
         android:textColorHint="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/new_username"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_username" />
 
 
     <Button

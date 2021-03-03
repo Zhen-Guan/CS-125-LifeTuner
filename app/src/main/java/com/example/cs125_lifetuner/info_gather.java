@@ -51,6 +51,16 @@ public class info_gather extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_gather);
 
+        Intent oldintent = getIntent();
+        gender = oldintent.getStringExtra("gender");
+        if (gender.equals("male")){
+            ((RadioButton) findViewById(R.id.radio_male)).setChecked(true);
+            ((RadioButton) findViewById(R.id.radio_female)).setChecked(false);
+        }
+        else if (gender.equals("female")){
+            ((RadioButton) findViewById(R.id.radio_male)).setChecked(false);
+            ((RadioButton) findViewById(R.id.radio_female)).setChecked(true);
+        }
 
         //先找到所有view
         weight =findViewById(R.id.weight);

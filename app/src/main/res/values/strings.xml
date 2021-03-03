@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">LifeTuner</string>
 
-    <string-array name="activiy_level_array">
+    <string-array name="activity_level_array">
         <item>Sedentary: little or no exercise</item>
         <item>Light: exercise 1 to 3 times a week</item>
         <item>Moderate: exercise 4 to 5 times a week</item>

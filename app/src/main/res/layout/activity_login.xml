@@ -73,7 +73,7 @@
         app:layout_constraintStart_toStartOf="@+id/signup_button" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
@@ -82,17 +82,19 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:text="1"
         app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintStart_toStartOf="parent" />
 
 
     <EditText
-        android:id="@+id/user_name"
+        android:id="@+id/username"
         android:layout_width="322dp"
         android:layout_height="39dp"
         android:hint="User Name"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword" />
+        android:text="1"
+        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintStart_toStartOf="@+id/password" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"

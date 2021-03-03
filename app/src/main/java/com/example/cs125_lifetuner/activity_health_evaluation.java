@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class activity_health_evaluation extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -82,7 +83,7 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
         Spinner activity_level_spinner = (Spinner) findViewById(R.id.activity_level_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> al_adapter = ArrayAdapter.createFromResource(this,
-                R.array.activiy_level_array, android.R.layout.simple_spinner_item);
+                R.array.activity_level_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         al_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
