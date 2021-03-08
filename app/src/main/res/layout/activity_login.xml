@@ -51,7 +51,6 @@
         android:layout_marginTop="84dp"
         android:ems="10"
         android:gravity="start|top"
-        android:inputType="textMultiLine"
         android:text="Tuning your life just like a guitar"
         android:textColor="@color/teal_200"
         android:textSize="10dp"
@@ -60,17 +59,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/login_button"
-        android:layout_width="96dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="#ffff99"
-        android:text="Log In"
-        android:textColor="@color/black"
-        app:backgroundTint="#8BC34A"
-        app:layout_constraintBottom_toTopOf="@+id/signup_button"
-        app:layout_constraintStart_toStartOf="@+id/signup_button" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="322dp"
+        android:layout_height="39dp"
+        android:hint="User Name"
+        android:nextFocusDown = "@id/password"
+        android:text=""
+        app:layout_constraintVertical_bias = "0.74"
+        app:layout_constraintHorizontal_bias="0.58"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/password"
@@ -81,20 +83,27 @@
         android:layout_marginBottom="12dp"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPassword"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/login_button"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:nextFocusDown = "@id/login_button"
+        app:layout_constraintVertical_bias = "0.82"
+        app:layout_constraintHorizontal_bias="0.00000001"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="322dp"
-        android:layout_height="39dp"
-        android:hint="User Name"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/password"
-        app:layout_constraintStart_toStartOf="@+id/password" />
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="96dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#ffff99"
+        android:text="Log In"
+        android:nextFocusDown = "@id/signup_button"
+        android:textColor="@color/black"
+        app:backgroundTint="#8BC34A"
+        app:layout_constraintBottom_toTopOf="@+id/signup_button"
+        app:layout_constraintStart_toStartOf="@+id/signup_button" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -115,6 +124,7 @@
         android:layout_marginBottom="24dp"
         android:backgroundTint="#ffff99"
         android:text="Sign up"
+        android:nextFocusDown = "@id/username"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
         app:layout_constraintEnd_toEndOf="parent" />

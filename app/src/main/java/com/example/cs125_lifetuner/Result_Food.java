@@ -31,8 +31,8 @@ public class Result_Food extends AppCompatActivity {
     Button button;
     ListView morning_list, lunch_dinner_list;
     int result_calories;
-    List<FoodModel> allFoodMorning, allFoodLunchDinner;
-
+    List<FoodModel> allFoodMorning, allFoodLunchDinner, finalFoodMorning, finalFoodAftEve;
+    public static double total_calorie_food = 0;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -63,6 +63,7 @@ public class Result_Food extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        total_calorie_food = 0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result__food);
 
@@ -93,32 +94,50 @@ public class Result_Food extends AppCompatActivity {
         //Create list array for Breakfast/ lunch&dinner
         allFoodMorning = new ArrayList<>();
         allFoodLunchDinner = new ArrayList<>();
+        finalFoodMorning = new ArrayList<>();
+        finalFoodAftEve = new ArrayList<>();
 
         //Get morning diet Array
-        try{
+        try {
             JSONObject jsonObject = new JSONObject(getFoodArray());
             JSONArray jsonArray = jsonObject.getJSONArray("food");
-            for (int i = 0; i < jsonArray.length(); i++){
+            for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject object = jsonArray.getJSONObject(i);
                 String foodName = object.getString("FOOD_NAME");
                 String foodTime = object.getString("FOOD_TIME");
                 int foodCalories = object.getInt("FOOD_CALORIES");
 
-                if (foodCalories > 0.25 * result_calories / 1.86){
+                if (foodCalories > 0.25 * result_calories / 1.86) {
                     continue;
                 }
 
                 FoodModel newFood;
-                if (foodTime.equals("m") || foodTime.equals("mae") ){
+                if (foodTime.equals("m") || foodTime.equals("mae")) {
                     newFood = new FoodModel(i, foodName, foodTime, foodCalories);
-                }
-                else {
+                } else {
                     continue;
                 }
                 allFoodMorning.add(newFood);
             }
+
+
+            //calorie needed for morning
+            double calories_morning = 0.25 * Double.parseDouble(activity_health_evaluation.need_calorie);
+
+            double cur_morning_calores = 0;
+            while (cur_morning_calores < calories_morning){
+                int random_index = getRandomNumber(0, allFoodMorning.size() - 1);
+                finalFoodMorning.add(allFoodMorning.get(random_index));
+                cur_morning_calores += (allFoodMorning.get(random_index).getfoodCalories());
+                allFoodMorning.remove(random_index);
+            }
+
+            total_calorie_food += cur_morning_calores;
+
+
+
             //Descending Sort
-            Collections.sort(allFoodMorning, (lhs, rhs) -> Integer.compare(rhs.getfoodCalories(), lhs.getfoodCalories()));
+            Collections.sort(finalFoodMorning, (lhs, rhs) -> Integer.compare(rhs.getfoodCalories(), lhs.getfoodCalories()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -146,8 +165,23 @@ public class Result_Food extends AppCompatActivity {
                 }
                 allFoodLunchDinner.add(newFood);
             }
+
+            double calories_after_even = 0.75 * Double.parseDouble(activity_health_evaluation.need_calorie);
+
+            double cur_aftev_calores = 0;
+            while (cur_aftev_calores < calories_after_even ){
+                int random_index = getRandomNumber(0, allFoodLunchDinner.size() - 1);
+                finalFoodAftEve.add(allFoodLunchDinner.get(random_index));
+                cur_aftev_calores += (allFoodLunchDinner.get(random_index).getfoodCalories());
+                allFoodLunchDinner.remove(random_index);
+            }
+
+            total_calorie_food += cur_aftev_calores;
+
+            Toast.makeText(this, "total food calories: " + String.valueOf(total_calorie_food), Toast.LENGTH_SHORT).show();
+
             //Descending Sort
-            Collections.sort(allFoodLunchDinner, (lhs, rhs) -> Integer.compare(rhs.getfoodCalories(), lhs.getfoodCalories()));
+            Collections.sort(finalFoodAftEve, (lhs, rhs) -> Integer.compare(rhs.getfoodCalories(), lhs.getfoodCalories()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -161,15 +195,17 @@ public class Result_Food extends AppCompatActivity {
 //        List<FoodModel> allFoodMorning = dataBaseHelper.getAllFoodMorning((int) (0.25 * result_calories / 1.86));
 
         //Show the elements in the Breakfast array
-        ArrayAdapter foodArrayAdapterMorning = new ArrayAdapter<>(Result_Food.this, android.R.layout.simple_list_item_1, allFoodMorning);
+        ArrayAdapter foodArrayAdapterMorning = new ArrayAdapter<>(Result_Food.this, android.R.layout.simple_list_item_1, finalFoodMorning);
         morning_list.setAdapter(foodArrayAdapterMorning);
 
         //show lunch & dinner database
 //        List<FoodModel> allFoodLunchDinner = dataBaseHelper.getAllFoodLunchDinner( (int) (0.35 * result_calories / 1.5));
 
         //Show the elements in the LunchDinner array
-        ArrayAdapter foodArrayAdapterLunchDinner = new ArrayAdapter<>(Result_Food.this, android.R.layout.simple_list_item_1, allFoodLunchDinner);
+        ArrayAdapter foodArrayAdapterLunchDinner = new ArrayAdapter<>(Result_Food.this, android.R.layout.simple_list_item_1, finalFoodAftEve);
         lunch_dinner_list.setAdapter(foodArrayAdapterLunchDinner);
+
+
 
 
         //背景代码 每次建立新的activity都可以把这一段复制到onCreate方法中
@@ -180,6 +216,10 @@ public class Result_Food extends AppCompatActivity {
         animationDrawable.start();
         //
 
+    }
+
+    public int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
     }
 
     public void openLunchpage(){
