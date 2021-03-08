@@ -35,11 +35,12 @@ public class SignUp extends AppCompatActivity {
 
             if ( !((RadioButton) findViewById(R.id.radio_female)).isChecked() && !((RadioButton) findViewById(R.id.radio_male)).isChecked()){
                 Toast.makeText(this, "Please select gender", Toast.LENGTH_SHORT).show();
-                gender = ((RadioButton) findViewById(R.id.radio_male)).isChecked() ? "male" : "female";
+
             }
 
             else{
                 try {
+                    gender = ((RadioButton) findViewById(R.id.radio_male)).isChecked() ? "male" : "female";
                     String username = text_username.getText().toString();
                     String password = text_password.getText().toString();
 
