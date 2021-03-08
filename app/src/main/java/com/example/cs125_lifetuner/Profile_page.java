@@ -52,6 +52,48 @@ public class Profile_page extends AppCompatActivity {
             }
         });
 
+        Button weight_changes = (Button) findViewById(R.id.view_weight_changes);
+        weight_changes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWeightChangesPage();
+            }
+        });
+
+        Button intake_changes = (Button) findViewById(R.id.intake_calories);
+        intake_changes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openIntakeCalorePage();
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.navigation, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.User_profile:
+                openProfilePage();
+                break;
+            case R.id.morning:
+                openMorningPage();
+                break;
+            case R.id.afternoon:
+                openAfternoonPage();
+                break;
+            case R.id.profile:
+                openProfile();
+                break;
+        }
+        return true;
     }
 
 
@@ -62,6 +104,38 @@ public class Profile_page extends AppCompatActivity {
 
     public void openFoodRec(){
         Intent intent = new Intent(this, Result_Food.class);
+        startActivity(intent);
+    }
+
+    public void openWeightChangesPage(){
+        Intent intent = new Intent(this, LineChart_Weight_Changed.class);
+        startActivity(intent);
+    }
+
+    public void openIntakeCalorePage(){
+        Intent intent = new Intent(this, BarChart_Calorie_Intake.class);
+        startActivity(intent);
+    }
+
+
+    public void openProfilePage(){
+        Intent intent = new Intent(this, Profile_page.class);
+        startActivity(intent);
+    }
+
+    public void openMorningPage(){
+        Intent intent = new Intent(this, Result_Food.class);
+        startActivity(intent);
+    }
+
+    public void openAfternoonPage(){
+        Intent intent = new Intent(this, Result_Exercise.class);
+        startActivity(intent);
+    }
+
+
+    public void openProfile(){
+        Intent intent = new Intent(this, info_gather.class);
         startActivity(intent);
     }
 

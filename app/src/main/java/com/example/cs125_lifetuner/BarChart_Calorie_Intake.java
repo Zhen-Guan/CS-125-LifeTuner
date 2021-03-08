@@ -62,6 +62,5 @@ public class BarChart_Calorie_Intake extends AppCompatActivity {
         barChart.animateY(2000);
 
 
-
     }
 }

@@ -25,7 +25,7 @@ public class Result_Evening extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.BMR:
+            case R.id.User_profile:
                 openEvaluationPage();
                 break;
             case R.id.morning:

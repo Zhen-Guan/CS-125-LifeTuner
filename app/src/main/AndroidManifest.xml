@@ -43,6 +43,8 @@
         <activity android:name=".Result_Exercise" />
         <activity android:name=".Result_Food" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".LineChart_Weight_Changed" />
+        <activity android:name=".BarChart_Calorie_Intake" />
     </application>
 
 </manifest>

@@ -13,11 +13,14 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class info_gather extends AppCompatActivity {
 
     EditText weight, height, age;
     Button btn_enter;
     String gender;
+    public static ArrayList<String> weight_list = new ArrayList<String>();
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -30,8 +33,8 @@ public class info_gather extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.BMR:
-                openEvaluationPage();
+            case R.id.User_profile:
+                openProfilePage();
                 break;
             case R.id.morning:
                 openMorningPage();
@@ -45,6 +48,7 @@ public class info_gather extends AppCompatActivity {
         }
         return true;
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +77,7 @@ public class info_gather extends AppCompatActivity {
         btn_enter = findViewById(R.id.enter);
 
 
+
         //采集玩家数据完毕后的enter按钮
         btn_enter.setOnClickListener(v -> {
 
@@ -85,6 +90,7 @@ public class info_gather extends AppCompatActivity {
                     int w = Integer.parseInt(weight.getText().toString().trim());
                     int h = Integer.parseInt(height.getText().toString().trim());
                     int a = Integer.parseInt(age.getText().toString().trim());
+                    weight_list.add(String.valueOf(w));
 
                     if (a > 150) {
                         Toast.makeText(info_gather.this, "Age is too large", Toast.LENGTH_SHORT).show();
@@ -149,6 +155,12 @@ public class info_gather extends AppCompatActivity {
         }
     }
 
+
+
+    public void openProfilePage(){
+        Intent intent = new Intent(this, Profile_page.class);
+        startActivity(intent);
+    }
 
     public void openEvaluationPage(){
         Intent intent = new Intent(this, activity_health_evaluation.class);

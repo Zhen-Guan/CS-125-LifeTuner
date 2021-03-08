@@ -24,9 +24,16 @@ public class LineChart_Weight_Changed extends AppCompatActivity{
         setContentView(R.layout.activity_line_chart__weight__changed);
 
         LineChartView lineChartView = findViewById(R.id.weight_changed);
-        String[] axisData = {"02-25", "02-26", "02-27"
-        ,"02-29","2-30", "2-31", "3-1"};
-        float[] yAxisData = {70, 80, 90, 100, 70, 60, 80};
+
+
+        ArrayList<String> yAxisData = new ArrayList<String>();
+        ArrayList<String> axisData = new ArrayList<String>();
+
+
+        for (int j = 0; j < info_gather.weight_list.size(); j++){
+            yAxisData.add(info_gather.weight_list.get(j));
+            axisData.add(String.valueOf(j));
+        }
 
 
         List yAxisValues = new ArrayList();
@@ -35,12 +42,12 @@ public class LineChart_Weight_Changed extends AppCompatActivity{
         Line line = new Line(yAxisValues).setColor(Color.parseColor("#9C27B0"));
 
 
-        for(int i = 0; i < axisData.length; i++){
-            axisValues.add(i, new AxisValue(i).setLabel(axisData[i]));
+        for(int i = 0; i < axisData.size(); i++){
+            axisValues.add(i, new AxisValue(i).setLabel(axisData.get(i)));
         }
 
-        for (int i = 0; i < yAxisData.length; i++){
-            yAxisValues.add(new PointValue(i, yAxisData[i]));
+        for (int i = 0; i < yAxisData.size(); i++){
+            yAxisValues.add(new PointValue(i, Float.parseFloat(yAxisData.get(i))));
         }
 
         List lines = new ArrayList();
@@ -54,7 +61,7 @@ public class LineChart_Weight_Changed extends AppCompatActivity{
         data.setAxisXBottom(axis);
 
         axis.setTextSize(12);
-        axis.setName("Date");
+        axis.setName("Time");
 
         axis.setTextColor(Color.parseColor("#03A9F4"));
         Axis yAxis = new Axis();

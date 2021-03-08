@@ -21,6 +21,7 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
     Button btn_get_recommendation;
     String selected_activity_level, selected_weight_loss;
     int result_calories, base_calories;
+    public static String result_calories_static;
 
     public static String need_calorie, current_weight, target_weight__, BMR_value;
 
@@ -51,8 +52,8 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.BMR:
-                openEvaluationPage();
+            case R.id.User_profile:
+                openProfilePage();
                 break;
             case R.id.morning:
                 openMorningPage();
@@ -66,6 +67,7 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
         }
         return true;
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +79,7 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
 
             Intent i = new Intent(this, Result_Food.class);
             i.putExtra("result_calories", String.valueOf(result_calories));
+            result_calories_static = String.valueOf(result_calories);
             startActivity(i);
         });
 
@@ -175,6 +178,10 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
         startActivity(intent);
     }
 
+    public void openProfilePage(){
+        Intent intent = new Intent(this, Profile_page.class);
+        startActivity(intent);
+    }
 
     public void openProfile(){
         Intent intent = new Intent(this, info_gather.class);
