@@ -8,17 +8,33 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
 public class Result_Exercise extends AppCompatActivity {
     private Button button;
     int result_calories;
+
+    // mapquest
+    private ListView exerciseNameList = findViewById(R.id.Exercise_Location);
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -75,6 +91,8 @@ public class Result_Exercise extends AppCompatActivity {
             }
         });
         //更改完毕
+        // mapquest
+//        jsonParse();
 
         //背景代码 每次建立新的activity都可以把这一段复制到onCreate方法中
         LinearLayout background_Layout = (LinearLayout) findViewById(R.id.main_container);
@@ -105,6 +123,37 @@ public class Result_Exercise extends AppCompatActivity {
     public void openProfile(){
         Intent intent = new Intent(this, info_gather.class);
         startActivity(intent);
+    }
+
+    // mapquest
+    private void jsonParse() {
+        String url = "https://www.mapquestapi.com/search/v2/radius?origin=33.646875,+-117.840508&radius=1&maxMatches=3&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|799101&outFormat=json&key=KEY";
+        ArrayList<String> resultList = new ArrayList<>();
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("searchResults");
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String resultName = jsonObject.getString("name");
+                                resultList.add(resultName);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter<>(Result_Exercise.this, android.R.layout.simple_list_item_1, resultList);
+        exerciseNameList.setAdapter(arrayAdapter);
     }
 }
 
