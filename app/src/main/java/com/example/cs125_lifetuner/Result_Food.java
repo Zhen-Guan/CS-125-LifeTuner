@@ -45,8 +45,8 @@ public class Result_Food extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.BMR:
-                openEvaluationPage();
+            case R.id.User_profile:
+                openProfilePage();
                 break;
             case R.id.morning:
                 openMorningPage();
@@ -66,8 +66,13 @@ public class Result_Food extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result__food);
 
-        Intent intent = getIntent();
-        result_calories = Integer.parseInt(intent.getStringExtra("result_calories"));
+        try{
+            Intent intent = getIntent();
+            result_calories = Integer.parseInt(intent.getStringExtra("result_calories"));
+        }
+        catch(Exception e){
+            result_calories =Integer.parseInt( activity_health_evaluation.result_calories_static);
+        }
 
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         TextView date_field = (TextView)findViewById(R.id.date);
@@ -183,8 +188,8 @@ public class Result_Food extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openEvaluationPage(){
-        Intent intent = new Intent(this, activity_health_evaluation.class);
+    public void openProfilePage(){
+        Intent intent = new Intent(this, Profile_page.class);
         startActivity(intent);
     }
 
@@ -198,10 +203,6 @@ public class Result_Food extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openEveningPage(){
-        Intent intent = new Intent(this, Result_Evening.class);
-        startActivity(intent);
-    }
 
     public void openProfile(){
         Intent intent = new Intent(this, info_gather.class);

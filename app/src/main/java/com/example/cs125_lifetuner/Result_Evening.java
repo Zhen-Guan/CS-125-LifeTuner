@@ -25,7 +25,7 @@ public class Result_Evening extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.BMR:
+            case R.id.User_profile:
                 openEvaluationPage();
                 break;
             case R.id.morning:
@@ -82,10 +82,6 @@ public class Result_Evening extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openEveningPage(){
-        Intent intent = new Intent(this, Result_Evening.class);
-        startActivity(intent);
-    }
 
     public void openProfile(){
         Intent intent = new Intent(this, info_gather.class);

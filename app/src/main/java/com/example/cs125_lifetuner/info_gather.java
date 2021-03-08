@@ -13,11 +13,14 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class info_gather extends AppCompatActivity {
 
     EditText weight, height, age;
     Button btn_enter;
     String gender;
+    public static ArrayList<String> weight_list = new ArrayList<String>();
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -30,8 +33,8 @@ public class info_gather extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.BMR:
-                openEvaluationPage();
+            case R.id.User_profile:
+                openProfilePage();
                 break;
             case R.id.morning:
                 openMorningPage();
@@ -46,20 +49,25 @@ public class info_gather extends AppCompatActivity {
         return true;
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_gather);
 
-        Intent oldintent = getIntent();
-        gender = oldintent.getStringExtra("gender");
-        if (gender.equals("male")){
-            ((RadioButton) findViewById(R.id.radio_male)).setChecked(true);
-            ((RadioButton) findViewById(R.id.radio_female)).setChecked(false);
+        try {
+            Intent oldintent = getIntent();
+            gender = oldintent.getStringExtra("gender");
+            if (gender.equals("male")) {
+                ((RadioButton) findViewById(R.id.radio_male)).setChecked(true);
+                ((RadioButton) findViewById(R.id.radio_female)).setChecked(false);
+            } else if (gender.equals("female")) {
+                ((RadioButton) findViewById(R.id.radio_male)).setChecked(false);
+                ((RadioButton) findViewById(R.id.radio_female)).setChecked(true);
+            }
         }
-        else if (gender.equals("female")){
-            ((RadioButton) findViewById(R.id.radio_male)).setChecked(false);
-            ((RadioButton) findViewById(R.id.radio_female)).setChecked(true);
+        catch (Exception e){
+            Toast.makeText(info_gather.this, "Error occurs", Toast.LENGTH_SHORT).show();
         }
 
         //先找到所有view
@@ -67,6 +75,7 @@ public class info_gather extends AppCompatActivity {
         height = findViewById(R.id.height);
         age = findViewById(R.id.age);
         btn_enter = findViewById(R.id.enter);
+
 
 
         //采集玩家数据完毕后的enter按钮
@@ -81,6 +90,7 @@ public class info_gather extends AppCompatActivity {
                     int w = Integer.parseInt(weight.getText().toString().trim());
                     int h = Integer.parseInt(height.getText().toString().trim());
                     int a = Integer.parseInt(age.getText().toString().trim());
+                    weight_list.add(String.valueOf(w));
 
                     if (a > 150) {
                         Toast.makeText(info_gather.this, "Age is too large", Toast.LENGTH_SHORT).show();
@@ -146,6 +156,12 @@ public class info_gather extends AppCompatActivity {
     }
 
 
+
+    public void openProfilePage(){
+        Intent intent = new Intent(this, Profile_page.class);
+        startActivity(intent);
+    }
+
     public void openEvaluationPage(){
         Intent intent = new Intent(this, activity_health_evaluation.class);
         startActivity(intent);
@@ -158,11 +174,6 @@ public class info_gather extends AppCompatActivity {
 
     public void openAfternoonPage(){
         Intent intent = new Intent(this, Result_Exercise.class);
-        startActivity(intent);
-    }
-
-    public void openEveningPage(){
-        Intent intent = new Intent(this, Result_Evening.class);
         startActivity(intent);
     }
 

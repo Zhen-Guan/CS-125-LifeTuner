@@ -3,17 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/User_profile"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="User Profile">
+    </item>
+    <item
         android:id="@+id/profile"
         android:orderInCategory="100"
         app:showAsAction="never"
         android:title="Information Gather">
     </item>
-    <item
-        android:id="@+id/BMR"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="BMR Result">
-    </item>
+
     <item
         android:id="@+id/morning"
         android:orderInCategory="100"
