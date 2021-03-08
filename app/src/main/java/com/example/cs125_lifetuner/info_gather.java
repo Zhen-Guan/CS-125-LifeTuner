@@ -51,15 +51,19 @@ public class info_gather extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_gather);
 
-        Intent oldintent = getIntent();
-        gender = oldintent.getStringExtra("gender");
-        if (gender.equals("male")){
-            ((RadioButton) findViewById(R.id.radio_male)).setChecked(true);
-            ((RadioButton) findViewById(R.id.radio_female)).setChecked(false);
+        try {
+            Intent oldintent = getIntent();
+            gender = oldintent.getStringExtra("gender");
+            if (gender.equals("male")) {
+                ((RadioButton) findViewById(R.id.radio_male)).setChecked(true);
+                ((RadioButton) findViewById(R.id.radio_female)).setChecked(false);
+            } else if (gender.equals("female")) {
+                ((RadioButton) findViewById(R.id.radio_male)).setChecked(false);
+                ((RadioButton) findViewById(R.id.radio_female)).setChecked(true);
+            }
         }
-        else if (gender.equals("female")){
-            ((RadioButton) findViewById(R.id.radio_male)).setChecked(false);
-            ((RadioButton) findViewById(R.id.radio_female)).setChecked(true);
+        catch (Exception e){
+            Toast.makeText(info_gather.this, "Error occurs", Toast.LENGTH_SHORT).show();
         }
 
         //先找到所有view
@@ -158,11 +162,6 @@ public class info_gather extends AppCompatActivity {
 
     public void openAfternoonPage(){
         Intent intent = new Intent(this, Result_Exercise.class);
-        startActivity(intent);
-    }
-
-    public void openEveningPage(){
-        Intent intent = new Intent(this, Result_Evening.class);
         startActivity(intent);
     }
 

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_700"
+    tools:context=".activity_health_evaluation">
+
+    <!--        //在UI的xml中同样需要加上这一行作为一个整体的渐变Layout-->
+    <LinearLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:orientation="vertical">
+    </LinearLayout>
+    <!--    //-->
+
+
+    <TextView
+        android:id="@+id/profile_text_current_bmr_value"
+        android:layout_width="359dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:text="Your current BMR value is"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/profile_text_daily_calories_needed"
+        android:layout_width="303dp"
+        android:layout_height="57dp"
+        android:gravity="center"
+        android:text="TODAY YOU NEED"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9" />
+
+    <TextView
+        android:id="@+id/profile_needed_calories"
+        android:layout_width="147dp"
+        android:layout_height="37dp"
+        android:gravity="center"
+        android:text="2343"
+        android:textColor="#f05053"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_text_current_bmr_value"
+        app:layout_constraintVertical_bias="0.94" />
+
+    <TextView
+        android:id="@+id/profile_bmr_value"
+        android:layout_width="225dp"
+        android:layout_height="70dp"
+        android:gravity="center"
+        android:text="1827"
+        android:textColor="#74ebd5"
+        android:textSize="60sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.164" />
+
+    <TextView
+        android:id="@+id/profile_text_calories"
+        android:layout_width="103dp"
+        android:layout_height="32dp"
+        android:gravity="center"
+        android:text="Calories"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
+
+    <TextView
+        android:id="@+id/profile_text_current_weight"
+        android:layout_width="162dp"
+        android:layout_height="64dp"
+        android:gravity="center"
+        android:text="Current Weight"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/profile_text_daily_calories_needed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_bmr_value"
+        app:layout_constraintVertical_bias="0.093" />
+
+    <TextView
+        android:id="@+id/profile_text_target_weight"
+        android:layout_width="162dp"
+        android:layout_height="64dp"
+        android:gravity="center"
+        android:text="Target Weight"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/profile_text_daily_calories_needed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.831"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_bmr_value"
+        app:layout_constraintVertical_bias="0.093" />
+
+    <TextView
+        android:id="@+id/profile_current_weight_value"
+        android:layout_width="92dp"
+        android:layout_height="43dp"
+        android:gravity="center"
+        android:text="73"
+        android:textColor="#cc5333"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/profile_text_daily_calories_needed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_bmr_value"
+        app:layout_constraintVertical_bias="0.266" />
+
+    <TextView
+        android:id="@+id/profile_target_weight_value"
+        android:layout_width="92dp"
+        android:layout_height="43dp"
+        android:gravity="center"
+        android:text="65"
+        android:textColor="#00F260"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/profile_text_daily_calories_needed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.768"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_bmr_value"
+        app:layout_constraintVertical_bias="0.266" />
+
+
+    <Button
+        android:id="@+id/fill_information"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#ffff99"
+        android:text="Fill Out new information"
+        android:textColor="@color/black"
+        app:layout_constraintVertical_bias = "0.5"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/view_recommendation"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#ffff99"
+        android:text="view recommendations"
+        android:textColor="@color/black"
+        app:layout_constraintVertical_bias = "0.6"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

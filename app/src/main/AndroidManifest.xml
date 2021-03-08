@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CS125LifeTuner">
-        <activity android:name=".recmap"></activity>
+        <activity android:name=".Profile_page"></activity>
+        <activity android:name=".recmap" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

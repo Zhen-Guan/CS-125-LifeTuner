@@ -22,6 +22,8 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
     String selected_activity_level, selected_weight_loss;
     int result_calories, base_calories;
 
+    public static String need_calorie, current_weight, target_weight__, BMR_value;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -29,6 +31,22 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
         return super.onCreateOptionsMenu(menu);
     }
 
+
+    public String getNeed_calorie() {
+        return need_calorie;
+    }
+
+    public String getCurrent_weight() {
+        return current_weight;
+    }
+
+    public String getTarget_weight__() {
+        return target_weight__;
+    }
+
+    public String getBMR_value() {
+        return BMR_value;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -72,8 +90,13 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
         TextView cal=findViewById(R.id.needed_calories);
 
         dmr.setText(intent.getStringExtra("bmr_value"));
+        BMR_value = intent.getStringExtra("bmr_value");
+
         cur_weight.setText(intent.getStringExtra("current_weight"));
+        current_weight = intent.getStringExtra("current_weight");
+
         tar_weight.setText(intent.getStringExtra("target_weight"));
+        target_weight__ = intent.getStringExtra("target_weight");
 
         base_calories = Integer.parseInt(intent.getStringExtra("calories"));
         result_calories = base_calories;
@@ -152,10 +175,6 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
         startActivity(intent);
     }
 
-    public void openEveningPage(){
-        Intent intent = new Intent(this, Result_Evening.class);
-        startActivity(intent);
-    }
 
     public void openProfile(){
         Intent intent = new Intent(this, info_gather.class);
@@ -185,6 +204,7 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
             result_calories = (int) (base_calories * 1.551 * CheckCurrentWL());
             cal.setText((String.valueOf(result_calories)));
         }
+        need_calorie = String.valueOf(result_calories);
     }
 
     public void changeCalTextWl(int position){
@@ -209,6 +229,7 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
             result_calories = (int) (base_calories * 0.571 * CheckCurrentAL());
             cal.setText(String.valueOf(result_calories));
         }
+        need_calorie = String.valueOf(result_calories);
     }
 
 

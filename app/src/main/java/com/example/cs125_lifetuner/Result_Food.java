@@ -66,8 +66,13 @@ public class Result_Food extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result__food);
 
-        Intent intent = getIntent();
-        result_calories = Integer.parseInt(intent.getStringExtra("result_calories"));
+        try{
+            Intent intent = getIntent();
+            result_calories = Integer.parseInt(intent.getStringExtra("result_calories"));
+        }
+        catch(Exception e){
+            Toast.makeText(this, "error occurs", Toast.LENGTH_SHORT).show();
+        }
 
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         TextView date_field = (TextView)findViewById(R.id.date);
@@ -198,10 +203,6 @@ public class Result_Food extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openEveningPage(){
-        Intent intent = new Intent(this, Result_Evening.class);
-        startActivity(intent);
-    }
 
     public void openProfile(){
         Intent intent = new Intent(this, info_gather.class);

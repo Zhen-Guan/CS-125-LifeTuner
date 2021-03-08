@@ -64,7 +64,7 @@ public class Result_Exercise extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Result_Exercise.this , Result_Food.class);
+                Intent i = new Intent(Result_Exercise.this , Profile_page.class);
                 i.putExtra("result_calories", String.valueOf(result_calories));
                 startActivity(i);
             }
