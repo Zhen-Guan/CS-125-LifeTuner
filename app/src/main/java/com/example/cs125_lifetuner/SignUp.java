@@ -62,7 +62,7 @@ public class SignUp extends AppCompatActivity {
                             return;
                         };
                         dataBaseHelper.addOne(userModel);
-                        Toast.makeText(this, "Sign up Successfully. Welcome, " + username +"!" + gender, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Sign up Successfully. Welcome, " + username +"!", Toast.LENGTH_SHORT).show();
 
                         startActivity(intent);
                     }
