@@ -55,20 +55,20 @@ public class info_gather extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_gather);
 
-        try {
-            Intent oldintent = getIntent();
-            gender = oldintent.getStringExtra("gender");
-            if (gender.equals("male")) {
-                ((RadioButton) findViewById(R.id.radio_male)).setChecked(true);
-                ((RadioButton) findViewById(R.id.radio_female)).setChecked(false);
-            } else if (gender.equals("female")) {
-                ((RadioButton) findViewById(R.id.radio_male)).setChecked(false);
-                ((RadioButton) findViewById(R.id.radio_female)).setChecked(true);
-            }
-        }
-        catch (Exception e){
-            Toast.makeText(info_gather.this, "Error occurs", Toast.LENGTH_SHORT).show();
-        }
+//        try {
+//            Intent oldintent = getIntent();
+//            gender = oldintent.getStringExtra("gender");
+//            if (gender.equals("male")) {
+//                ((RadioButton) findViewById(R.id.radio_male)).setChecked(true);
+//                ((RadioButton) findViewById(R.id.radio_female)).setChecked(false);
+//            } else if (gender.equals("female")) {
+//                ((RadioButton) findViewById(R.id.radio_male)).setChecked(false);
+//                ((RadioButton) findViewById(R.id.radio_female)).setChecked(true);
+//            }
+//        }
+//        catch (Exception e){
+//            Toast.makeText(info_gather.this, "Error occurs", Toast.LENGTH_SHORT).show();
+//        }
 
         //先找到所有view
         weight =findViewById(R.id.weight);
@@ -76,56 +76,48 @@ public class info_gather extends AppCompatActivity {
         age = findViewById(R.id.age);
         btn_enter = findViewById(R.id.enter);
 
-
+        Intent oldintent = getIntent();
+        gender = oldintent.getStringExtra("gender");
 
         //采集玩家数据完毕后的enter按钮
         btn_enter.setOnClickListener(v -> {
 
-            if ( !((RadioButton) findViewById(R.id.radio_female)).isChecked() && !((RadioButton) findViewById(R.id.radio_male)).isChecked()){
-                Toast.makeText(this, "Please select gender", Toast.LENGTH_SHORT).show();
-            }
+            try {
+                int w = Integer.parseInt(weight.getText().toString().trim());
+                int h = Integer.parseInt(height.getText().toString().trim());
+                int a = Integer.parseInt(age.getText().toString().trim());
+                weight_list.add(String.valueOf(w));
 
-            else{
-                try {
-                    int w = Integer.parseInt(weight.getText().toString().trim());
-                    int h = Integer.parseInt(height.getText().toString().trim());
-                    int a = Integer.parseInt(age.getText().toString().trim());
-                    weight_list.add(String.valueOf(w));
-
-                    if (a > 150) {
-                        Toast.makeText(info_gather.this, "Age is too large", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (w > 1400) {
-                        Toast.makeText(info_gather.this, "Weight is too large", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (h > 272) {
-                        Toast.makeText(info_gather.this, "Height is too large", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        Intent intent = new Intent(info_gather.this, activity_health_evaluation.class);
-
-                        // we use Mifflin-St Jeor Equation
-                        final double d = (gender.equals("male")) ? (10*w + 6.25*h - 5*a + 5) : (10*w + 6.25*h - 5*a -161);
-                        // we use J. D. Robinson Formula (1983)
-                        double target_weight = (gender.equals("male")) ? ((h > 152) ? 52 + (h-152)*1.9/2.5 : 52) : (h > 152) ? (49 + (h-152)*1.7/2.5) : 49;
-
-                        String bmr = String.valueOf(Math.round(d));
-                        String target = String.valueOf(target_weight);
-                        String calories = String.valueOf(Math.round((d) * 1.2));
-
-                        intent.putExtra("current_weight", String.valueOf(w));
-                        intent.putExtra("bmr_value", bmr);
-                        intent.putExtra("target_weight", target);
-                        intent.putExtra("calories", calories);
-
-                        startActivity(intent);
-                     }
-                } catch (Exception e){
-                    Toast.makeText(info_gather.this, "Please enter all blanks", Toast.LENGTH_SHORT).show();
+                if (a > 150) {
+                    Toast.makeText(info_gather.this, "Age is too large", Toast.LENGTH_SHORT).show();
                 }
+                else if (w > 1400) {
+                    Toast.makeText(info_gather.this, "Weight is too large", Toast.LENGTH_SHORT).show();
+                }
+                else if (h > 272) {
+                    Toast.makeText(info_gather.this, "Height is too large", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent(info_gather.this, activity_health_evaluation.class);
+
+                    // we use Mifflin-St Jeor Equation
+                    final double d = (gender.equals("male")) ? (10*w + 6.25*h - 5*a + 5) : (10*w + 6.25*h - 5*a -161);
+                    // we use J. D. Robinson Formula (1983)
+                    double target_weight = (gender.equals("male")) ? ((h > 152) ? 52 + (h-152)*1.9/2.5 : 52) : (h > 152) ? (49 + (h-152)*1.7/2.5) : 49;
+
+                    String bmr = String.valueOf(Math.round(d));
+                    String target = String.valueOf(target_weight);
+                    String calories = String.valueOf(Math.round((d) * 1.2));
+
+                    intent.putExtra("current_weight", String.valueOf(w));
+                    intent.putExtra("bmr_value", bmr);
+                    intent.putExtra("target_weight", target);
+                    intent.putExtra("calories", calories);
+                    startActivity(intent);
+                 }
+            } catch (Exception e){
+                Toast.makeText(info_gather.this, "Please enter all blanks", Toast.LENGTH_SHORT).show();
             }
-
-
 
         });
 

@@ -32,7 +32,6 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
         return super.onCreateOptionsMenu(menu);
     }
 
-
     public String getNeed_calorie() {
         return need_calorie;
     }
