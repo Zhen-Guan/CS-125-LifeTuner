@@ -23,9 +23,8 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-
-        ((RadioButton) findViewById(R.id.radio_male)).setChecked(false);
-        ((RadioButton) findViewById(R.id.radio_female)).setChecked(false);
+//        ((RadioButton) findViewById(R.id.radio_male)).setChecked(true);
+//        ((RadioButton) findViewById(R.id.radio_female)).setChecked(false);
         text_username = findViewById(R.id.new_username);
         text_password = findViewById(R.id.new_password);
         DataBaseHelper dataBaseHelper = new DataBaseHelper(this);

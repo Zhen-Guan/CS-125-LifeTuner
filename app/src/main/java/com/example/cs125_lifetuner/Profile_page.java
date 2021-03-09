@@ -20,11 +20,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 public class Profile_page extends AppCompatActivity {
+    public String gender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
+
+        Intent intent = getIntent();
+        gender = intent.getStringExtra("gender");
 
         TextView bmr_result = findViewById(R.id.profile_bmr_value);
         TextView target_w = findViewById(R.id.profile_target_weight_value);
@@ -35,6 +39,7 @@ public class Profile_page extends AppCompatActivity {
         target_w.setText(activity_health_evaluation.target_weight__);
         needed_ca.setText(activity_health_evaluation.need_calorie);
         cur_weight.setText(activity_health_evaluation.current_weight);
+
 
         Button fill_button = (Button) findViewById(R.id.fill_information);
         fill_button.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +104,7 @@ public class Profile_page extends AppCompatActivity {
 
     public void openInfoPage(){
         Intent intent = new Intent(this, info_gather.class);
+        intent.putExtra("gender", gender);
         startActivity(intent);
     }
 
@@ -120,6 +126,7 @@ public class Profile_page extends AppCompatActivity {
 
     public void openProfilePage(){
         Intent intent = new Intent(this, Profile_page.class);
+        intent.putExtra("gender", gender);
         startActivity(intent);
     }
 

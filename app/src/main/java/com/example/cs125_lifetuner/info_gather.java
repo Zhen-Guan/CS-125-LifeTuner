@@ -116,7 +116,8 @@ public class info_gather extends AppCompatActivity {
                     startActivity(intent);
                  }
             } catch (Exception e){
-                Toast.makeText(info_gather.this, "Please enter all blanks", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(info_gather.this, "Please enter all blanks", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -151,6 +152,7 @@ public class info_gather extends AppCompatActivity {
 
     public void openProfilePage(){
         Intent intent = new Intent(this, Profile_page.class);
+        intent.putExtra("gender", gender);
         startActivity(intent);
     }
 
