@@ -8,17 +8,27 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Random;
 
 public class Result_Exercise extends AppCompatActivity {
     private Button button;
     int result_calories;
+    ListView Location_list, Exercise_list;
+    List<String> Location, recmd_exercises;
+    public static double exercise_calories = 0;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -50,6 +60,125 @@ public class Result_Exercise extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result__exercise);
+        //create map of exercises
+        Map<String,Integer> exercise = new HashMap<String,Integer>();
+        exercise.put("Weight Lifting: general",112);
+        exercise.put("Aerobics: water",149);
+        exercise.put("Stretching, Hatha Yoga",149);
+        exercise.put("Calisthenics: moderate",167);
+        exercise.put("Riders: general",186);
+        exercise.put("Aerobics: low impact",205);
+        exercise.put("Stair Step Machine: general",223);
+        exercise.put("Teaching aerobics",223);
+        exercise.put("Weight Lifting: vigorous",223);
+        exercise.put("Aerobics, Step: low impact",260);
+        exercise.put("Aerobics: high impact",260);
+        exercise.put("Bicycling, Stationary: moderate",260);
+        exercise.put("Rowing, Stationary: moderate",260);
+        exercise.put("Calisthenics: vigorous",298);
+        exercise.put("Circuit Training: general",298);
+        exercise.put("Rowing, Stationary: vigorous",316);
+        exercise.put("Elliptical Trainer: general",335);
+        exercise.put("Ski Machine: general",353);
+        exercise.put("Aerobics, Step: high impact",372);
+        exercise.put("Bicycling, Stationary: vigorous",391);
+        exercise.put("Billiards",93);
+        exercise.put("Bowling",112);
+        exercise.put("Dancing: slow, waltz, foxtrot",112);
+        exercise.put("Frisbee",112);
+        exercise.put("Volleyball: non-competitive, general play",112);
+        exercise.put("Water Volleyball",112);
+        exercise.put("Archery: non-hunting",130);
+        exercise.put("Golf: using cart",130);
+        exercise.put("Hang Gliding",130);
+        exercise.put("Curling",149);
+        exercise.put("Gymnastics: general",149);
+        exercise.put("Horseback Riding: general",149);
+        exercise.put("Tai Chi",149);
+        exercise.put("Volleyball: competitive, gymnasium play",149);
+        exercise.put("Walking: 3.5 mph (17 min/mi)",149);
+        exercise.put("Badminton: general",167);
+        exercise.put("Walking: 4 mph (15 min/mi)",167);
+        exercise.put("Kayaking",186);
+        exercise.put("Skateboarding",186);
+        exercise.put("Snorkeling",186);
+        exercise.put("Softball: general play",186);
+        exercise.put("Walking: 4.5 mph (13 min/mi)",186);
+        exercise.put("Whitewater: rafting, kayaking",186);
+        exercise.put("Dancing: disco, ballroom, square",205);
+        exercise.put("Golf: carrying clubs",205);
+        exercise.put("Dancing: Fast, ballet, twist",223);
+        exercise.put("Fencing",223);
+        exercise.put("Hiking: cross-country",223);
+        exercise.put("Skiing: downhill",223);
+        exercise.put("Swimming: general",223);
+        exercise.put("Walk/Jog: jog <10 min.",223);
+        exercise.put("Water Skiing",223);
+        exercise.put("Wrestling",223);
+        exercise.put("Basketball: wheelchair",242);
+        exercise.put("Race Walking",242);
+        exercise.put("Ice Skating: general",260);
+        exercise.put("Racquetball: casual, general",260);
+        exercise.put("Rollerblade Skating",260);
+        exercise.put("Scuba or skin diving",260);
+        exercise.put("Sledding, luge, toboggan",260);
+        exercise.put("Soccer: general",260);
+        exercise.put("Tennis: general",260);
+        exercise.put("Basketball: playing a game",298);
+        exercise.put("Bicycling: 12-13.9 mph",298);
+        exercise.put("Football: touch, flag, general",298);
+        exercise.put("Hockey: field & ice",298);
+        exercise.put("Rock Climbing: rappelling",298);
+        exercise.put("Running: 5 mph (12 min/mile)",298);
+        exercise.put("Running: pushing wheelchair, marathon wheeling",298);
+        exercise.put("Skiing: cross-country",298);
+        exercise.put("Snow Shoeing",298);
+        exercise.put("Swimming: backstroke",298);
+        exercise.put("Volleyball: beach",298);
+        exercise.put("Bicycling: BMX or mountain",316);
+        exercise.put("Boxing: sparring",335);
+        exercise.put("Football: competitive",335);
+        exercise.put("Orienteering",335);
+        exercise.put("Running: 5.2 mph (11.5 min/mile)",335);
+        exercise.put("Running: cross-country",335);
+        exercise.put("Bicycling: 14-15.9 mph",372);
+        exercise.put("Martial Arts: judo, karate, kickbox",372);
+        exercise.put("Racquetball: competitive",372);
+        exercise.put("Rope Jumping",372);
+        exercise.put("Running: 6 mph (10 min/mile)",372);
+        exercise.put("Swimming: breaststroke",372);
+        exercise.put("Swimming: laps, vigorous",372);
+        exercise.put("Swimming: treading, vigorous",372);
+        exercise.put("Water Polo",372);
+        exercise.put("Rock Climbing: ascending",409);
+        exercise.put("Running: 6.7 mph (9 min/mile)",409);
+        exercise.put("Swimming: butterfly",409);
+        exercise.put("Swimming: crawl",409);
+        exercise.put("Bicycling: 16-19 mph",446);
+        exercise.put("Handball: general",446);
+        exercise.put("Running: 7.5 mph (8 min/mile)",465);
+        exercise.put("Running: 8.6 mph (7 min/mile)",539);
+        exercise.put("Bicycling: > 20 mph",614);
+        exercise.put("Running: 10 mph (6 min/mile)",614);
+        exercise.put("Planting seedlings, shrubs",149);
+        exercise.put("Raking Lawn",149);
+        exercise.put("Sacking grass or leaves",149);
+        exercise.put("Gardening: general",167);
+        exercise.put("Mowing Lawn: push, power",167);
+        exercise.put("Operate Snow Blower: walking",167);
+        exercise.put("Plant trees",167);
+        exercise.put("Gardening: weeding",172);
+        exercise.put("Carrying & stacking wood",186);
+        exercise.put("Digging, spading dirt",186);
+        exercise.put("Laying sod / crushed rock",186);
+        exercise.put("Mowing Lawn: push, hand",205);
+        exercise.put("Chopping & splitting wood",223);
+        exercise.put("Shoveling Snow: by hand",223);
+        List<String> data = new ArrayList<String>(exercise.keySet());
+
+
+
+
 
         try {
             Intent intent = getIntent();
@@ -60,10 +189,33 @@ public class Result_Exercise extends AppCompatActivity {
         }
 
 
-        button = (Button) findViewById(R.id.button_to_evening);
+
+
+        Exercise_list= findViewById((R.id.exercise_list));
+        recmd_exercises = new ArrayList<>();
+        double calories_needed =Result_Food.total_calorie_food-Double.parseDouble(activity_health_evaluation.need_calorie);
+        double cur_calories = 0;
+        while (cur_calories < calories_needed){
+            int random_index = getRandomNumber(0,data.size());
+            recmd_exercises.add(data.get(random_index));
+            cur_calories += (exercise.get(data.get(random_index)));
+            data.remove(random_index);
+        }
+        exercise_calories += cur_calories;
+
+
+        ArrayAdapter foodArrayAdapterMorning = new ArrayAdapter<>(Result_Exercise.this, android.R.layout.simple_list_item_1, recmd_exercises);
+        Exercise_list.setAdapter(foodArrayAdapterMorning);
+
+
+
+
+        button = (Button) findViewById(R.id.button_to_home);
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         TextView date_field = (TextView)findViewById(R.id.date);
         date_field.setText(date);
+
+
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +238,7 @@ public class Result_Exercise extends AppCompatActivity {
     }
 
 
+
     public void openProfilePage(){
         Intent intent = new Intent(this, Profile_page.class);
         startActivity(intent);
@@ -105,6 +258,9 @@ public class Result_Exercise extends AppCompatActivity {
     public void openProfile(){
         Intent intent = new Intent(this, info_gather.class);
         startActivity(intent);
+    }
+    public int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
     }
 }
 
