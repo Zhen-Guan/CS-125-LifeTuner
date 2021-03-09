@@ -27,8 +27,6 @@ public class Profile_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
 
-        Intent intent = getIntent();
-        gender = intent.getStringExtra("gender");
 
         TextView bmr_result = findViewById(R.id.profile_bmr_value);
         TextView target_w = findViewById(R.id.profile_target_weight_value);
@@ -104,7 +102,6 @@ public class Profile_page extends AppCompatActivity {
 
     public void openInfoPage(){
         Intent intent = new Intent(this, info_gather.class);
-        intent.putExtra("gender", gender);
         startActivity(intent);
     }
 
@@ -126,7 +123,6 @@ public class Profile_page extends AppCompatActivity {
 
     public void openProfilePage(){
         Intent intent = new Intent(this, Profile_page.class);
-        intent.putExtra("gender", gender);
         startActivity(intent);
     }
 
@@ -143,7 +139,6 @@ public class Profile_page extends AppCompatActivity {
 
     public void openProfile(){
         Intent intent = new Intent(this, info_gather.class);
-        intent.putExtra("gender", gender);
         startActivity(intent);
     }
 

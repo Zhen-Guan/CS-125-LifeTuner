@@ -62,6 +62,7 @@ public class Result_Exercise extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result__exercise);
+
         //create map of exercises
         Map<String,Integer> exercise = new HashMap<String,Integer>();
         exercise.put("Weight Lifting: general",112);
@@ -189,9 +190,6 @@ public class Result_Exercise extends AppCompatActivity {
         catch (Exception e){
             result_calories =Integer.parseInt( activity_health_evaluation.result_calories_static);
         }
-
-
-
 
         Exercise_list= findViewById((R.id.exercise_list));
         recmd_exercises = new ArrayList<>();

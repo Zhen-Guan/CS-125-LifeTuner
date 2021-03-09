@@ -19,7 +19,7 @@ public class info_gather extends AppCompatActivity {
 
     EditText weight, height, age;
     Button btn_enter;
-    String gender;
+    public static String gender;
     public static ArrayList<String> weight_list = new ArrayList<String>();
 
     @Override
@@ -77,7 +77,10 @@ public class info_gather extends AppCompatActivity {
         btn_enter = findViewById(R.id.enter);
 
         Intent oldintent = getIntent();
-        gender = oldintent.getStringExtra("gender");
+        String g = oldintent.getStringExtra("gender");
+        if (g != null){
+            gender = g;
+        }
 
         //采集玩家数据完毕后的enter按钮
         btn_enter.setOnClickListener(v -> {
@@ -113,11 +116,11 @@ public class info_gather extends AppCompatActivity {
                     intent.putExtra("bmr_value", bmr);
                     intent.putExtra("target_weight", target);
                     intent.putExtra("calories", calories);
+                    intent.putExtra("gender", gender);
                     startActivity(intent);
                  }
             } catch (Exception e){
-                Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
-//                Toast.makeText(info_gather.this, "Please enter all blanks", Toast.LENGTH_SHORT).show();
+                Toast.makeText(info_gather.this, "Please enter all blanks", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -152,7 +155,6 @@ public class info_gather extends AppCompatActivity {
 
     public void openProfilePage(){
         Intent intent = new Intent(this, Profile_page.class);
-        intent.putExtra("gender", gender);
         startActivity(intent);
     }
 
@@ -173,7 +175,6 @@ public class info_gather extends AppCompatActivity {
 
     public void openProfile(){
         Intent intent = new Intent(this, info_gather.class);
-        intent.putExtra("gender", gender);
         startActivity(intent);
     }
 }
