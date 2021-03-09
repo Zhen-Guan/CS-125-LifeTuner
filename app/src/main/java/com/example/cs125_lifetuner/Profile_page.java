@@ -143,6 +143,7 @@ public class Profile_page extends AppCompatActivity {
 
     public void openProfile(){
         Intent intent = new Intent(this, info_gather.class);
+        intent.putExtra("gender", gender);
         startActivity(intent);
     }
 
