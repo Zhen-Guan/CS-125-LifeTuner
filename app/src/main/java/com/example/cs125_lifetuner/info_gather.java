@@ -173,6 +173,7 @@ public class info_gather extends AppCompatActivity {
 
     public void openProfile(){
         Intent intent = new Intent(this, info_gather.class);
+        intent.putExtra("gender", gender);
         startActivity(intent);
     }
 }
