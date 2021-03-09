@@ -19,6 +19,9 @@ import java.util.ArrayList;
 
 public class BarChart_Calorie_Intake extends AppCompatActivity {
 
+
+    // x axis -> times
+    // bar chart -> elements in the arraylist
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,23 +29,28 @@ public class BarChart_Calorie_Intake extends AppCompatActivity {
 
         BarChart barChart = findViewById(R.id.BarChartIntake);
 
-        // x axis->date y axis->calorie intake for that day
         ArrayList<BarEntry> calorie = new ArrayList<>();
         ArrayList<Double> CalorieList = new ArrayList<Double>();
         ArrayList<String> date = new ArrayList<String>();
         //y axis data
-        CalorieList.add(700.50);
-        CalorieList.add(800.50);
-        CalorieList.add(900.50);
-        CalorieList.add(1000.50);
-        CalorieList.add(700.50);
+//        CalorieList.add(700.50);
+//        CalorieList.add(800.50);
+//        CalorieList.add(900.50);
+//        CalorieList.add(1000.50);
+//        CalorieList.add(700.50);
+//
 
+
+        for (int i = 0; i < Result_Exercise.record_calories.size(); i++){
+            date.add(String.valueOf(i));
+            CalorieList.add(Result_Exercise.record_calories.get(i));
+        }
         //x axis data
-        date.add("2021-02-01");
-        date.add("2021-02-02");
-        date.add("2021-02-03");
-        date.add("2021-02-04");
-        date.add("2021-02-06");
+//        date.add("2021-02-01");
+//        date.add("2021-02-02");
+//        date.add("2021-02-03");
+//        date.add("2021-02-04");
+//        date.add("2021-02-06");
 
         for (int i = 0; i < CalorieList.size(); i++) {
             calorie.add(new BarEntry(i,CalorieList.get(i).floatValue()));

@@ -125,7 +125,7 @@ public class Result_Food extends AppCompatActivity {
             double calories_morning = 0.25 * Double.parseDouble(activity_health_evaluation.need_calorie);
 
             double cur_morning_calores = 0;
-            while (cur_morning_calores < calories_morning + 400){
+            while (cur_morning_calores < calories_morning + 200){
                 int random_index = getRandomNumber(0, allFoodMorning.size() - 1);
                 finalFoodMorning.add(allFoodMorning.get(random_index));
                 cur_morning_calores += (allFoodMorning.get(random_index).getfoodCalories());
@@ -169,7 +169,7 @@ public class Result_Food extends AppCompatActivity {
             double calories_after_even = 0.75 * Double.parseDouble(activity_health_evaluation.need_calorie);
 
             double cur_aftev_calores = 0;
-            while (cur_aftev_calores < calories_after_even + 1000 ){
+            while (cur_aftev_calores < calories_after_even + 800 ){
                 int random_index = getRandomNumber(0, allFoodLunchDinner.size() - 1);
                 finalFoodAftEve.add(allFoodLunchDinner.get(random_index));
                 cur_aftev_calores += (allFoodLunchDinner.get(random_index).getfoodCalories());

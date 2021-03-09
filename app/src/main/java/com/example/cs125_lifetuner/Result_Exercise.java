@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class Result_Exercise extends AppCompatActivity {
     ListView Location_list, Exercise_list;
     List<String> Location, recmd_exercises;
     public static double exercise_calories = 0;
+    public static List<Double> record_calories = new ArrayList<>();
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -197,15 +199,19 @@ public class Result_Exercise extends AppCompatActivity {
         double cur_calories = 0;
         while (cur_calories < calories_needed){
             int random_index = getRandomNumber(0,data.size());
-            recmd_exercises.add(data.get(random_index));
             cur_calories += (exercise.get(data.get(random_index)));
+            recmd_exercises.add(data.get(random_index) + "     Calories: " + String.valueOf(exercise.get(data.get(random_index))));
             data.remove(random_index);
         }
-        exercise_calories += cur_calories;
+        exercise_calories = cur_calories;
+
+        record_calories.add(Result_Food.total_calorie_food - Result_Exercise.exercise_calories);
 
 
         ArrayAdapter foodArrayAdapterMorning = new ArrayAdapter<>(Result_Exercise.this, android.R.layout.simple_list_item_1, recmd_exercises);
         Exercise_list.setAdapter(foodArrayAdapterMorning);
+
+        Toast.makeText(this, String.valueOf(exercise_calories), Toast.LENGTH_SHORT);
 
 
 
