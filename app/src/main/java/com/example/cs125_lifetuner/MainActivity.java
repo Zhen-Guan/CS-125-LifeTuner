@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -12,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         //背景代码 每次建立新的activity都可以把这一段复制到onCreate方法中
         LinearLayout background_Layout = (LinearLayout) findViewById(R.id.main_container);

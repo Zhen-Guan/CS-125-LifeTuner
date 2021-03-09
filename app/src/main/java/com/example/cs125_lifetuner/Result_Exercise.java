@@ -11,6 +11,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,9 +29,16 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
@@ -75,7 +83,11 @@ public class Result_Exercise extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result__exercise);
-
+//
+//        if (android.os.Build.VERSION.SDK_INT > 9) {
+//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//            StrictMode.setThreadPolicy(policy);
+//        }
         try {
             Intent intent = getIntent();
             result_calories = Integer.parseInt(intent.getStringExtra("result_calories"));
@@ -83,6 +95,42 @@ public class Result_Exercise extends AppCompatActivity {
             result_calories = Integer.parseInt(activity_health_evaluation.result_calories_static);
         }
 
+
+        String data = "";
+        try {
+            String sURL = "https://www.mapquestapi.com/search/v2/radius?origin=33.646875,+-117.840508&radius=1&maxMatches=3&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|799101&outFormat=json&key=OqC1DY34U3qYSVrCzrMVqw0AlcIcJ3AX";
+            URL url = new URL(sURL);
+            HttpURLConnection request =(HttpURLConnection) url.openConnection();
+            InputStream inputStream = request.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            String line = "";
+            while(line != null){
+                line = bufferedReader.readLine();
+                data = data + line;
+            }
+        }catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Toast.makeText(this, "retrieve data is "+ data, Toast.LENGTH_SHORT).show();
+
+
+
+//
+//        try {
+//            Toast.makeText(Result_Exercise.this, "exception  does not occurss", Toast.LENGTH_LONG);
+//            //jsonParse2();
+//        } catch (IOException e) {
+//            Toast.makeText(Result_Exercise.this, "exception occurss", Toast.LENGTH_LONG);
+//        } catch (JSONException e) {
+//            Toast.makeText(Result_Exercise.this, "exception occurss", Toast.LENGTH_LONG);
+//        }
+
+//        RetrieveFeedTask a = new RetrieveFeedTask();
+//        a.doInBackground();
 
         button = (Button) findViewById(R.id.button_to_evening);
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
@@ -100,6 +148,32 @@ public class Result_Exercise extends AppCompatActivity {
         });
         //更改完毕
         exerciseNameList = findViewById(R.id.Exercise_Location);
+//        private void jsonParse2() throws IOException {
+//            Toast.makeText(Result_Exercise.this, "HERE", Toast.LENGTH_LONG);
+//
+//            ArrayList<String> resultList = new ArrayList<>();
+//            String sURL = "https://www.mapquestapi.com/search/v2/radius?origin=33.646875,+-117.840508&radius=1&maxMatches=3&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|799101&outFormat=json&key= OqC1DY34U3qYSVrCzrMVqw0AlcIcJ3AX";
+//            // Connect to the URL using java's native library
+//            URL url = new URL(sURL);
+//            URLConnection request = url.openConnection();
+//            request.connect();
+//
+//            // Convert to a JSON object to print data
+//            JsonParser jp = new JsonParser(); //from gson
+//            JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent())); //Convert the input stream to a json element
+//            JsonObject rootobj = root.getAsJsonObject(); //May be an array, may be an object.
+//            JsonArray jsonArray = rootobj.getAsJsonArray("searchResults");
+//            for (int i = 0; i < jsonArray.size(); i++) {
+//                JsonObject jsonObject = jsonArray.get(i).getAsJsonObject();
+//                String resultName = jsonObject.get("name").getAsString();
+//                resultList.add(resultName);
+//            }
+//            if (!resultList.isEmpty()) {
+//                Toast.makeText(Result_Exercise.this, "parsed", Toast.LENGTH_LONG);
+//            } else {
+//                Toast.makeText(Result_Exercise.this, "failed", Toast.LENGTH_LONG);
+//            }
+//        }
         // getcurrent location
 //        client = LocationServices.getFusedLocationProviderClient(this);
 //        Location location = getCurrentLocation();
@@ -122,7 +196,6 @@ public class Result_Exercise extends AppCompatActivity {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-        new RetrieveFeedTask().execute();
 
         //背景代码 每次建立新的activity都可以把这一段复制到onCreate方法中
         LinearLayout background_Layout = (LinearLayout) findViewById(R.id.main_container);
@@ -198,33 +271,42 @@ public class Result_Exercise extends AppCompatActivity {
 //        exerciseNameList.setAdapter(arrayAdapter);
 //    }
 
-    private void jsonParse2() throws IOException {
-        Toast.makeText(Result_Exercise.this, "HERE", Toast.LENGTH_LONG);
+//    Thread thread = new Thread(new Runnable() {public void run() {}});
+//
+//    }
+//        Thread thread = new Thread(new Runnable() {
+//            @Override
+//            public void run(){
+//                try{
+//                    Toast.makeText(Result_Exercise.this, "HERE", Toast.LENGTH_LONG);
+//                    ArrayList<String> resultList = new ArrayList<>();
+//                    String sURL = "https://www.mapquestapi.com/search/v2/radius?origin=33.646875,+-117.840508&radius=1&maxMatches=3&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|799101&outFormat=json&key=OqC1DY34U3qYSVrCzrMVqw0AlcIcJ3AX";
+//                    // Connect to the URL using java's native library
+//                    URL url = new URL(sURL);
+//                    HttpURLConnection request =(HttpURLConnection) url.openConnection();
+//                    request.setRequestMethod("GET");
+//                    request.setRequestProperty("User-Agent", "Mozilla/5.0");
+//                    int responseCode = request.getResponseCode();
+//                    Toast.makeText(Result_Exercise.this, "response code: " + String.valueOf(responseCode), Toast.LENGTH_LONG);
+//                    BufferedReader in = new BufferedReader(
+//                            new InputStreamReader(request.getInputStream()));
+//                    String inputLine;
+//                    StringBuffer response = new StringBuffer();
+//                    while ((inputLine = in.readLine()) != null) {
+//                        response.append(inputLine);
+//                    }
+//                    in.close();
+//                    Toast.makeText(Result_Exercise.this, "response " + response.toString(), Toast.LENGTH_LONG);
+//                    JSONObject myResponse = new JSONObject(response.toString());
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
 
-        ArrayList<String> resultList = new ArrayList<>();
-        String sURL = "https://www.mapquestapi.com/search/v2/radius?origin=33.646875,+-117.840508&radius=1&maxMatches=3&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|799101&outFormat=json&key= OqC1DY34U3qYSVrCzrMVqw0AlcIcJ3AX";
-        // Connect to the URL using java's native library
-        URL url = new URL(sURL);
-        URLConnection request = url.openConnection();
-        request.connect();
 
-        // Convert to a JSON object to print data
-        JsonParser jp = new JsonParser(); //from gson
-        JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent())); //Convert the input stream to a json element
-        JsonObject rootobj = root.getAsJsonObject(); //May be an array, may be an object.
-        JsonArray jsonArray = rootobj.getAsJsonArray("searchResults");
-        for (int i = 0; i < jsonArray.size(); i++) {
-            JsonObject jsonObject = jsonArray.get(i).getAsJsonObject();
-            String resultName = jsonObject.get("name").getAsString();
-            resultList.add(resultName);
-        }
-        if (!resultList.isEmpty()) {
-            Toast.makeText(Result_Exercise.this, "parsed", Toast.LENGTH_LONG);
-        } else {
-            Toast.makeText(Result_Exercise.this, "failed", Toast.LENGTH_LONG);
-
-        }
-    }
 
     private Location getCurrentLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -274,26 +356,28 @@ public class Result_Exercise extends AppCompatActivity {
         }
     }
 
-    private class RetrieveFeedTask extends AsyncTask<Void, Void, Void> {
 
-        private Exception exception;
-
-        protected Void doInBackground(Void... voids) {
-            try {
-                jsonParse2();
-            } catch (Exception e) {
-                this.exception = e;
-
-                return null;
-            }
-            return null;
-        }
-
-        protected void onPostExecute(Void voids) {
-            // TODO: check this.exception
-            // TODO: do something with the feed
-        }
-    }
+//    private class RetrieveFeedTask extends AsyncTask<Void, Void, Void> {
+//
+//        private Exception exception;
+//
+//        protected Void doInBackground(Void... voids) {
+//            try {
+//                //jsonParse2();
+//            } catch (Exception e) {
+//                this.exception = e;
+//
+//
+//                return null;
+//            }
+//            return null;
+//        }
+//
+//        protected void onPostExecute(Void voids) {
+//            // TODO: check this.exception
+//            // TODO: do something with the feed
+//        }
+//    }
 }
 
 
