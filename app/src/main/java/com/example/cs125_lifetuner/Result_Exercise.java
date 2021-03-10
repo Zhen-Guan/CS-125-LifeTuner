@@ -1,8 +1,11 @@
 package com.example.cs125_lifetuner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +17,26 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.net.URLConnection;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -232,6 +255,36 @@ public class Result_Exercise extends AppCompatActivity {
         });
         //更改完毕
 
+        // test
+        String data2 = "";
+        try {
+            String sURL = "https://www.mapquestapi.com/search/v2/radius?origin=33.646875,+-117.840508&radius=1&maxMatches=4&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|799101&outFormat=json&key=OqC1DY34U3qYSVrCzrMVqw0AlcIcJ3AX";
+            URL url = new URL(sURL);
+            HttpURLConnection request =(HttpURLConnection) url.openConnection();
+            InputStream inputStream = request.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            String line = "";
+            while((line = bufferedReader.readLine()) != null){
+                data2 = data2 + line;
+            }
+        }catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Toast.makeText(this, "retrieve data successed", Toast.LENGTH_SHORT).show();
+        //test end
+        // location list
+        Location_list = findViewById(R.id.location_list);
+        ArrayList<String> resultList = jsonParser(data2);
+        ArrayAdapter locationArrayAdapter = new ArrayAdapter<>(Result_Exercise.this,
+                android.R.layout.simple_list_item_1, resultList);
+
+        Location_list.setAdapter(locationArrayAdapter);
+
+
         //背景代码 每次建立新的activity都可以把这一段复制到onCreate方法中
         LinearLayout background_Layout = (LinearLayout) findViewById(R.id.main_container);
         AnimationDrawable animationDrawable = (AnimationDrawable) background_Layout.getBackground();
@@ -265,6 +318,25 @@ public class Result_Exercise extends AppCompatActivity {
     }
     public int getRandomNumber(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
+    }
+
+    private ArrayList<String> jsonParser(String data) {
+        ArrayList<String> resultList = new ArrayList<>();
+        Gson gson = new GsonBuilder().setLenient().create();
+        JsonObject jsonObject = gson.fromJson(data, JsonObject.class);
+//        JsonObject jsonObject = JsonParser.parseString(data).getAsJsonObject();
+        JsonArray jsonArray = jsonObject.getAsJsonArray("searchResults");
+        for (int i = 0; i < jsonArray.size(); i++) {
+            JsonObject jsonObject2 = jsonArray.get(i).getAsJsonObject();
+            String resultName = jsonObject2.get("name").getAsString();
+            resultList.add(resultName);
+        }
+        if (!resultList.isEmpty()) {
+            Toast.makeText(Result_Exercise.this, "parsed", Toast.LENGTH_LONG);
+        } else {
+            Toast.makeText(Result_Exercise.this, "failed", Toast.LENGTH_LONG);
+        }
+        return resultList;
     }
 }
 
