@@ -1,5 +1,6 @@
 package com.example.cs125_lifetuner;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -7,6 +8,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.AnimationDrawable;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,14 +21,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -36,7 +36,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.net.URLConnection;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,7 +44,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Random;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Result_Exercise extends AppCompatActivity {
     private Button button;
@@ -54,6 +53,7 @@ public class Result_Exercise extends AppCompatActivity {
     List<String> Location, recmd_exercises;
     public static double exercise_calories = 0;
     public static List<Double> record_calories = new ArrayList<>();
+    FusedLocationProviderClient client;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -254,36 +254,9 @@ public class Result_Exercise extends AppCompatActivity {
             }
         });
         //更改完毕
-
-        // test
-        String data2 = "";
-        try {
-            String sURL = "https://www.mapquestapi.com/search/v2/radius?origin=33.646875,+-117.840508&radius=1&maxMatches=4&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|799101&outFormat=json&key=OqC1DY34U3qYSVrCzrMVqw0AlcIcJ3AX";
-            URL url = new URL(sURL);
-            HttpURLConnection request =(HttpURLConnection) url.openConnection();
-            InputStream inputStream = request.getInputStream();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            String line = "";
-            while((line = bufferedReader.readLine()) != null){
-                data2 = data2 + line;
-            }
-        }catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Toast.makeText(this, "retrieve data successed", Toast.LENGTH_SHORT).show();
-        //test end
-        // location list
-        Location_list = findViewById(R.id.location_list);
-        ArrayList<String> resultList = jsonParser(data2);
-        ArrayAdapter locationArrayAdapter = new ArrayAdapter<>(Result_Exercise.this,
-                android.R.layout.simple_list_item_1, resultList);
-
-        Location_list.setAdapter(locationArrayAdapter);
-
+        // get location
+        client = LocationServices.getFusedLocationProviderClient(this);
+        getCurrentLocation();
 
         //背景代码 每次建立新的activity都可以把这一段复制到onCreate方法中
         LinearLayout background_Layout = (LinearLayout) findViewById(R.id.main_container);
@@ -331,12 +304,76 @@ public class Result_Exercise extends AppCompatActivity {
             String resultName = jsonObject2.get("name").getAsString();
             resultList.add(resultName);
         }
-        if (!resultList.isEmpty()) {
-            Toast.makeText(Result_Exercise.this, "parsed", Toast.LENGTH_LONG);
-        } else {
-            Toast.makeText(Result_Exercise.this, "failed", Toast.LENGTH_LONG);
-        }
+
         return resultList;
+    }
+
+    private void getCurrentLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            Toast.makeText(this, "here1", Toast.LENGTH_LONG).show();
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "here2", Toast.LENGTH_LONG).show();
+                return ;
+            }
+        }
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.INTERNET}, 1);
+        }
+        final String[] res = new String[1];
+        client.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<android.location.Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null) {
+                    Double lat = location.getLatitude();
+                    Double lng = location.getLongitude();
+                    res[0] = lat.toString() + ",+" + lng.toString();
+                    // pass current location to request, and then parse the response json.
+                    locationRecorder(res[0]);
+//                    Toast.makeText(Result_Exercise.this, res[0], Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        return;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "PERMISSION GRANTED", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "PERMISSION DENIED", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void locationRecorder(String currentLocation) {
+        // location list
+        String data2 = "";
+        try {
+            String sURL = "https://www.mapquestapi.com/search/v2/radius?origin="+currentLocation+"&radius=1&maxMatches=4&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|799101&outFormat=json&key=OqC1DY34U3qYSVrCzrMVqw0AlcIcJ3AX";
+            URL url = new URL(sURL);
+            HttpURLConnection request =(HttpURLConnection) url.openConnection();
+            InputStream inputStream = request.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            String line = "";
+            while((line = bufferedReader.readLine()) != null){
+                data2 = data2 + line;
+            }
+        }catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Location_list = findViewById(R.id.location_list);
+        ArrayList<String> resultList = jsonParser(data2);
+        ArrayAdapter locationArrayAdapter = new ArrayAdapter<>(Result_Exercise.this,
+                android.R.layout.simple_list_item_1, resultList);
+
+        Location_list.setAdapter(locationArrayAdapter);
     }
 }
 
