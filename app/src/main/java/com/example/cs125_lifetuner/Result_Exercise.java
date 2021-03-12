@@ -258,6 +258,10 @@ public class Result_Exercise extends AppCompatActivity {
         client = LocationServices.getFusedLocationProviderClient(this);
         getCurrentLocation();
 
+        // get weather
+        String weather = getCurrentWeather();
+//        Toast.makeText(this, "weather is:" + weather, Toast.LENGTH_LONG).show();
+
         //背景代码 每次建立新的activity都可以把这一段复制到onCreate方法中
         LinearLayout background_Layout = (LinearLayout) findViewById(R.id.main_container);
         AnimationDrawable animationDrawable = (AnimationDrawable) background_Layout.getBackground();
@@ -311,9 +315,7 @@ public class Result_Exercise extends AppCompatActivity {
     private void getCurrentLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-            Toast.makeText(this, "here1", Toast.LENGTH_LONG).show();
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "here2", Toast.LENGTH_LONG).show();
                 return ;
             }
         }
@@ -374,6 +376,41 @@ public class Result_Exercise extends AppCompatActivity {
                 android.R.layout.simple_list_item_1, resultList);
 
         Location_list.setAdapter(locationArrayAdapter);
+    }
+
+    private String getCurrentWeather() {
+        String data = "";
+        try {
+            String sURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/325023?apikey=%20BLrJ4NbiloLukli3XfnHWvc6VnL81KHs%20";
+            URL url = new URL(sURL);
+            HttpURLConnection request =(HttpURLConnection) url.openConnection();
+            InputStream inputStream = request.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            Toast.makeText(this, "here......", Toast.LENGTH_SHORT).show();
+            String line = "";
+
+            line = bufferedReader.readLine();
+            Toast.makeText(this, "input:" + line, Toast.LENGTH_LONG).show();
+            if (line == "") {
+                Toast.makeText(this, "input is null" + line, Toast.LENGTH_LONG).show();
+            }
+
+            while((line = bufferedReader.readLine()) != null){
+                data = data + line;
+            }
+        }catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        Gson gson = new GsonBuilder().setLenient().create();
+//        JsonArray jsonArray = gson.fromJson(data, JsonArray.class);
+//        JsonObject jsonObject = jsonArray.get(0).getAsJsonObject();
+//        String resultName = jsonObject.get("IconPhrase").getAsString();
+        return data;
     }
 }
 
