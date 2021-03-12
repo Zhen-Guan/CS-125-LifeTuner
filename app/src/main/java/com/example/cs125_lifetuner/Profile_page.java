@@ -83,6 +83,9 @@ public class Profile_page extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.signout:
+                openSigninPage();
+                break;
             case R.id.User_profile:
                 openProfilePage();
                 break;
@@ -123,6 +126,10 @@ public class Profile_page extends AppCompatActivity {
 
     public void openProfilePage(){
         Intent intent = new Intent(this, Profile_page.class);
+        startActivity(intent);
+    }
+    public void openSigninPage(){
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
 

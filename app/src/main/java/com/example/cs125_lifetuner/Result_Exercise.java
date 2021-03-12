@@ -66,6 +66,9 @@ public class Result_Exercise extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.signout:
+                openSigninPage();
+                break;
             case R.id.User_profile:
                 openProfilePage();
                 break;
@@ -289,6 +292,10 @@ public class Result_Exercise extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openSigninPage(){
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+    }
 
     public void openProfile(){
         Intent intent = new Intent(this, info_gather.class);

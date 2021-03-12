@@ -28,5 +28,12 @@
         android:title="Exercise Recommendation">
     </item>
 
+    <item
+        android:id="@+id/signout"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="Sign Out">
+    </item>
+
 
 </menu>

@@ -51,6 +51,9 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.signout:
+                openSigninPage();
+                break;
             case R.id.User_profile:
                 openProfilePage();
                 break;
@@ -184,6 +187,11 @@ public class activity_health_evaluation extends AppCompatActivity implements Ada
 
     public void openProfile(){
         Intent intent = new Intent(this, info_gather.class);
+        startActivity(intent);
+    }
+
+    public void openSigninPage(){
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
 

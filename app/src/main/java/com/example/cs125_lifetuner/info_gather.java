@@ -33,6 +33,9 @@ public class info_gather extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.signout:
+                openSigninPage();
+                break;
             case R.id.User_profile:
                 openProfilePage();
                 break;
@@ -151,6 +154,10 @@ public class info_gather extends AppCompatActivity {
         }
     }
 
+    public void openSigninPage(){
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+    }
 
 
     public void openProfilePage(){

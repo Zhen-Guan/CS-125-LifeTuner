@@ -45,6 +45,9 @@ public class Result_Food extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.signout:
+                openSigninPage();
+                break;
             case R.id.User_profile:
                 openProfilePage();
                 break;
@@ -220,6 +223,11 @@ public class Result_Food extends AppCompatActivity {
 
     public int getRandomNumber(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
+    }
+
+    public void openSigninPage(){
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
     }
 
     public void openLunchpage(){
