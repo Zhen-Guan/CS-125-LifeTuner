@@ -54,6 +54,7 @@ public class Result_Exercise extends AppCompatActivity {
     public static double exercise_calories = 0;
     public static List<Double> record_calories = new ArrayList<>();
     FusedLocationProviderClient client;
+    private String weather;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -234,11 +235,13 @@ public class Result_Exercise extends AppCompatActivity {
 
         Toast.makeText(this, String.valueOf(exercise_calories), Toast.LENGTH_SHORT);
 
-
+        // get weather
+        weather = getCurrentWeather();
 
 
         button = (Button) findViewById(R.id.button_to_home);
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        date = date + "; " + weather;
         TextView date_field = (TextView)findViewById(R.id.date);
         date_field.setText(date);
 
@@ -254,13 +257,11 @@ public class Result_Exercise extends AppCompatActivity {
             }
         });
         //更改完毕
+
+
         // get location
         client = LocationServices.getFusedLocationProviderClient(this);
         getCurrentLocation();
-
-        // get weather
-        String weather = getCurrentWeather();
-//        Toast.makeText(this, "weather is:" + weather, Toast.LENGTH_LONG).show();
 
         //背景代码 每次建立新的activity都可以把这一段复制到onCreate方法中
         LinearLayout background_Layout = (LinearLayout) findViewById(R.id.main_container);
@@ -355,6 +356,9 @@ public class Result_Exercise extends AppCompatActivity {
         String data2 = "";
         try {
             String sURL = "https://www.mapquestapi.com/search/v2/radius?origin="+currentLocation+"&radius=1&maxMatches=4&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|799101&outFormat=json&key=OqC1DY34U3qYSVrCzrMVqw0AlcIcJ3AX";
+//            if (weather != "Showers" || weather != "Rain" || weather != "T-Storms ") {
+//                sURL = "https://www.mapquestapi.com/search/v2/radius?origin="+currentLocation+"&radius=1&maxMatches=4&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|799951&outFormat=json&key=OqC1DY34U3qYSVrCzrMVqw0AlcIcJ3AX";
+//            }
             URL url = new URL(sURL);
             HttpURLConnection request =(HttpURLConnection) url.openConnection();
             InputStream inputStream = request.getInputStream();
@@ -384,22 +388,12 @@ public class Result_Exercise extends AppCompatActivity {
             String sURL = "https://dataservice.accuweather.com/forecasts/v1/hourly/1hour/325023?apikey=%20BLrJ4NbiloLukli3XfnHWvc6VnL81KHs%20";
             URL url = new URL(sURL);
             HttpURLConnection request =(HttpURLConnection) url.openConnection();
-            Toast.makeText(this, "here......", Toast.LENGTH_SHORT).show();
             InputStream inputStream = request.getInputStream(); // potentially problematic
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             String line = "";
-
-            line = bufferedReader.readLine();
-            Toast.makeText(this, "input:" + line, Toast.LENGTH_LONG).show();
-            if (line == "") {
-                Toast.makeText(this, "input is null" + line, Toast.LENGTH_LONG).show();
-            }
-
             while((line = bufferedReader.readLine()) != null){
                 data = data + line;
             }
-            //Toast.makeText(this, data, Toast.LENGTH_LONG).show();
-
         }catch (ProtocolException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
@@ -408,11 +402,11 @@ public class Result_Exercise extends AppCompatActivity {
             e.printStackTrace();
         }
 
-//        Gson gson = new GsonBuilder().setLenient().create();
-//        JsonArray jsonArray = gson.fromJson(data, JsonArray.class);
-//        JsonObject jsonObject = jsonArray.get(0).getAsJsonObject();
-//        String resultName = jsonObject.get("IconPhrase").getAsString();
-        return data;
+        Gson gsonx = new GsonBuilder().setLenient().create();
+        JsonArray jsonArrayx = gsonx.fromJson(data, JsonArray.class);
+        JsonObject jsonObjectx = jsonArrayx.get(0).getAsJsonObject();
+        String resultName = jsonObjectx.get("IconPhrase").getAsString();
+        return resultName;
     }
 }
 
