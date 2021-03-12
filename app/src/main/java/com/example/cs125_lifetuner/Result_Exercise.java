@@ -381,7 +381,7 @@ public class Result_Exercise extends AppCompatActivity {
     private String getCurrentWeather() {
         String data = "";
         try {
-            String sURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/325023?apikey=%20BLrJ4NbiloLukli3XfnHWvc6VnL81KHs%20";
+            String sURL = "https://dataservice.accuweather.com/forecasts/v1/hourly/1hour/325023?apikey=%20BLrJ4NbiloLukli3XfnHWvc6VnL81KHs%20";
             URL url = new URL(sURL);
             HttpURLConnection request =(HttpURLConnection) url.openConnection();
             Toast.makeText(this, "here......", Toast.LENGTH_SHORT).show();
@@ -398,6 +398,8 @@ public class Result_Exercise extends AppCompatActivity {
             while((line = bufferedReader.readLine()) != null){
                 data = data + line;
             }
+            //Toast.makeText(this, data, Toast.LENGTH_LONG).show();
+
         }catch (ProtocolException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
