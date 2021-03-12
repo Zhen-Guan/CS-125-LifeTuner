@@ -384,9 +384,9 @@ public class Result_Exercise extends AppCompatActivity {
             String sURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/325023?apikey=%20BLrJ4NbiloLukli3XfnHWvc6VnL81KHs%20";
             URL url = new URL(sURL);
             HttpURLConnection request =(HttpURLConnection) url.openConnection();
-            InputStream inputStream = request.getInputStream();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             Toast.makeText(this, "here......", Toast.LENGTH_SHORT).show();
+            InputStream inputStream = request.getInputStream(); // potentially problematic
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             String line = "";
 
             line = bufferedReader.readLine();
