@@ -1,6 +1,7 @@
 # CS-125-LifeTuner
 
-![logo](https://user-images.githubusercontent.com/52941906/111022820-1c646880-838a-11eb-98a3-203d4947b5db.png)
+<img src="https://user-images.githubusercontent.com/52941906/111022820-1c646880-838a-11eb-98a3-203d4947b5db.png" height="500">
+
 
 ## Sumamry of Project Goal and Approach (Please go to our progress report for more information)
 
