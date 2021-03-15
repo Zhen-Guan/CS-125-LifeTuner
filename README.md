@@ -3,7 +3,7 @@
 <img src="https://user-images.githubusercontent.com/52941906/111022820-1c646880-838a-11eb-98a3-203d4947b5db.png" height="500">
 
 
-## Sumamry of Project Goal and Approach (Please go to our project report for more information)
+## Summary of Project Goal and Approach (Please go to our project report for more information)
 
 ### Personal Model Data Sources:
   1. User’s body information: height, weight, gender, and age
